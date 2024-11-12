@@ -26,7 +26,7 @@ release = '0.0.1'
 extensions = ['sphinx.ext.napoleon',
 'sphinx.ext.autodoc', 
 'sphinx.ext.autosectionlabel',
-"myst_nb"]
+"myst_nb",'sphinx.ext.githubpages']
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -41,7 +41,6 @@ html_theme = 'sphinx_book_theme'
 html_theme_options = {
     "show_navbar_depth": 4,
     "max_navbar_depth": 6,
-    "toc_title": "{your-title}",
     "show_toc_level": 2
 }
 
