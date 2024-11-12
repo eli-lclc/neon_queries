@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Report Examples &#8212; suave_sql 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'report_examples';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="MODULE: reporting_funcs" href="reporting_funcs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="suave_sql.html">MODULE: sql_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_table.html">sql_funcs reference table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting_funcs.html">MODULE: reporting_funcs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Report Examples</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/report_examples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Report Examples</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> {your-title} </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Report Examples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-a-report-object">initializing a Report object</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-functions">report_functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engine-settings">engine_settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-setup-of-the-report-object">Actual Setup of the Report Object</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-report-object">Using the Report Object</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-report-outputs">Inspecting Report Outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-excel-file">creating an excel file</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reports">Example Reports</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idhs">IDHS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-referral-meeting">Monthly Referral Meeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-digests">Data Digests</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="report-examples">
+<h1>Report Examples<a class="headerlink" href="#report-examples" title="Link to this heading">#</a></h1>
+</section>
+<section id="initializing-a-report-object">
+<h1>initializing a Report object<a class="headerlink" href="#initializing-a-report-object" title="Link to this heading">#</a></h1>
+<p>A whole bunch of parameters go into creation of the Report object, so let’s take some time to break a few down</p>
+<section id="report-functions">
+<h2>report_functions<a class="headerlink" href="#report-functions" title="Link to this heading">#</a></h2>
+<p>the base case report_functions dictionary takes the structure</p>
+<p>{‘dataframe title’: (‘function_name’,(function_parameters))}</p>
+<p>where:</p>
+<ul class="simple">
+<li><p>dataframe title is the key in the eventual report_output dictionary (and the heading/tab of an excel file)</p></li>
+<li><p>function_name is the name of the suave_sql function to run</p></li>
+<li><p>function_parameters are the ordered parameters of the suave_sql function (unless all values are default)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_functions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;unique participants&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;program enrollment&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant races&#39;</span><span class="p">:(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;race&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant genders&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,)),</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>report_functions can also take a nested dictionary in order to place specific functions on specific sheets in excel</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_nested_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;demographics&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;unique participants&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;program enrollment&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant races&#39;</span><span class="p">:(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;race&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant genders&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,)),</span>
+        <span class="p">},</span>
+    <span class="s1">&#39;legal information&#39;</span><span class="p">:</span>  <span class="p">{</span>
+        <span class="s2">&quot;rearrested clients&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;legal_rearrested&quot;</span><span class="p">,</span> <span class="p">()),</span>
+        <span class="s1">&#39;violent case types&#39;</span><span class="p">:(</span><span class="s1">&#39;legal_bonanza&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>  <span class="s1">&#39;case_type&#39;</span><span class="p">,</span><span class="s1">&#39;violent&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;violent case outcomes&#39;</span><span class="p">:(</span><span class="s1">&#39;legal_bonanza&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span><span class="s1">&#39;case_outcomes&#39;</span><span class="p">,</span><span class="s1">&#39;violent&#39;</span><span class="p">,))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="engine-settings">
+<h2>engine_settings<a class="headerlink" href="#engine-settings" title="Link to this heading">#</a></h2>
+<p>engine_settings takes all the information one typically uses when initializing a suave_sql object (except for dates) and stores it in a dictionary.</p>
+<p>This way, if you’re running a report for each month over a longer period of time, it’s easy to re-initialize a suave_sql object. For instance, if you want to continually use the stints.neon_chd table, your setup would look something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://eli:password@LCLCN001/neon&#39;</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s2">&quot;AUTOCOMMIT&quot;</span><span class="p">)</span>
+<span class="n">full_engine_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+    <span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;clipboard&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;mycase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon_chd&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://eli:password@LCLCN001/neon&#39;</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s2">&quot;AUTOCOMMIT&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">full_engine_settings</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon_chd&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">}</span>
+
+<span class="ne">NameError</span>: name &#39;create_engine&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="actual-setup-of-the-report-object">
+<h2>Actual Setup of the Report Object<a class="headerlink" href="#actual-setup-of-the-report-object" title="Link to this heading">#</a></h2>
+<p>A full initialization looks something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_functions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;unique participants&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;program enrollment&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant races&#39;</span><span class="p">:(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;race&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant genders&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;dem_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,)),</span>
+        <span class="p">}</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://eli:password@LCLCN001/neon&#39;</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s2">&quot;AUTOCOMMIT&quot;</span><span class="p">)</span>
+<span class="n">full_engine_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+    <span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;clipboard&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;mycase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon_chd&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># for one report in a timeframe</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">report_functions</span> <span class="o">=</span> <span class="n">example_functions</span><span class="p">,</span> <span class="n">engine_settings</span> <span class="o">=</span> <span class="n">full_engine_settings</span><span class="p">,</span> <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2024-08-31&#39;</span><span class="p">,</span> <span class="n">report_type</span> <span class="o">=</span> <span class="s1">&#39;Queries&#39;</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># for monthly reports in the timeframe</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">report_functions</span> <span class="o">=</span> <span class="n">example_functions</span><span class="p">,</span> <span class="n">engine_settings</span> <span class="o">=</span> <span class="n">full_engine_settings</span><span class="p">,</span> <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2024-08-31&#39;</span><span class="p">,</span> <span class="n">report_type</span> <span class="o">=</span> <span class="s1">&#39;Queries&#39;</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="s1">&#39;MS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="using-the-report-object">
+<h1>Using the Report Object<a class="headerlink" href="#using-the-report-object" title="Link to this heading">#</a></h1>
+<section id="inspecting-report-outputs">
+<h2>Inspecting Report Outputs<a class="headerlink" href="#inspecting-report-outputs" title="Link to this heading">#</a></h2>
+<p>Upon initialization of the Report object, a dictionary of outputs for each function is created. This can be accessed with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">report_outputs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>a specific output can also be examined by entering the key of a report_function entry. For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">report_outputs</span><span class="p">[</span><span class="s1">&#39;unique participants&#39;</span><span class="p">]</span>
+
+<span class="c1"># if you used a nested dictionary, you&#39;ll need to include that as well</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">report_outputs</span><span class="p">[</span><span class="s1">&#39;demographics&#39;</span><span class="p">][</span><span class="s1">&#39;unique participants&#39;</span><span class="p">]</span>
+
+<span class="c1"># the value of each entry is a dataframe, so you can mess around with it in python further if desired</span>
+<span class="c1"># you could also just copy it to your clipboard</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">report_outputs</span><span class="p">[</span><span class="s1">&#39;demographics&#39;</span><span class="p">][</span><span class="s1">&#39;unique participants&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_clipboard</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-an-excel-file">
+<h2>creating an excel file<a class="headerlink" href="#creating-an-excel-file" title="Link to this heading">#</a></h2>
+<p>it’s real easy to do this, all you need to do is make up a file path for your future excel file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\test.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you have a single-level reporting_funcs dictionary, you can set the query_tabs parameter to True to give each item in the dictionary its own sheet in the excel file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\test.xlsx&quot;</span><span class="p">,</span> <span class="n">query_tabs</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otherwise, each output dataframe will be placed one after another, with N spacer_rows in between.
+To create a file with these stacked dataframes and two spaces between each row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\test.xlsx&quot;</span><span class="p">,</span> <span class="n">query_tabs</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">spacer_rows</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A nested dictionary will automatically place each subdictionary on a separate tab, so its query_tabs parameter should always be set to False</p>
+</section>
+</section>
+<section id="example-reports">
+<h1>Example Reports<a class="headerlink" href="#example-reports" title="Link to this heading">#</a></h1>
+<section id="idhs">
+<h2>IDHS<a class="headerlink" href="#idhs" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://eli:password@LCLCN001/neon&#39;</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s2">&quot;AUTOCOMMIT&quot;</span><span class="p">)</span>
+
+<span class="n">standard_inputs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+<span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;clipboard&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;mycase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon&#39;</span>
+<span class="p">}</span>
+
+<span class="n">funcz</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;cvi&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;unique participants&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_enrollment&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;participant ages&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_age&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant races&#39;</span><span class="p">:(</span><span class="s1">&#39;idhs_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;race&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant genders&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant languages&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_language&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;detail-level services&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_linkages&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;internal, external linkages&#39;</span><span class="p">:(</span><span class="s1">&#39;idhs_linkages&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,)),</span> 
+        <span class="s1">&#39;CPIC prompting incidents&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_incidents&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,)),</span>
+        <span class="s1">&#39;CPIC prompting incidents&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_incidents&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,))</span>
+        <span class="p">},</span>
+<span class="s1">&#39;ppr&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;unique participants&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_enrollment&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;participant races&#39;</span><span class="p">:(</span><span class="s1">&#39;idhs_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;race&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant ages&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_age&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;participant genders&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_race_gender&#39;</span><span class="p">,(</span><span class="s1">&#39;gender&#39;</span><span class="p">,)),</span>
+        <span class="s1">&#39;outreach eligibility&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;outreach_elig_tally&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,)),</span>
+        <span class="s1">&#39;linkages&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;idhs_linkages&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,)),</span>
+        <span class="s1">&#39;discharged case plans&#39;</span><span class="p">:(</span><span class="s1">&#39;isp_discharged&#39;</span><span class="p">,()),</span>
+        <span class="s1">&#39;incidents&#39;</span><span class="p">:(</span><span class="s1">&#39;incident_tally&#39;</span><span class="p">,</span> <span class="p">()),</span>
+        <span class="s1">&#39;incident responses&#39;</span><span class="p">:(</span><span class="s1">&#39;incident_response&#39;</span><span class="p">,())</span>
+<span class="p">}}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">funcz</span><span class="p">,</span> <span class="n">standard_inputs</span><span class="p">,</span> <span class="s1">&#39;2024-07-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-09-30&#39;</span><span class="p">,</span><span class="n">interval</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">report_type</span> <span class="o">=</span> <span class="s1">&#39;IDHS&#39;</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\test_idhs.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="monthly-referral-meeting">
+<h2>Monthly Referral Meeting<a class="headerlink" href="#monthly-referral-meeting" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standard_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+    <span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;clipboard&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;mycase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon&#39;</span>
+<span class="p">}</span>
+
+<span class="n">funcz</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;monthly metrics&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;highest cases by team&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;highest_cases&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kc">False</span><span class="p">,)),</span>
+<span class="s2">&quot;highest cases by atty&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;highest_cases&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span><span class="p">,)),</span>
+<span class="s1">&#39;cm_closures&#39;</span><span class="p">:(</span><span class="s1">&#39;cm_closures&#39;</span><span class="p">,()),</span>
+<span class="s1">&#39;neighborhoods&#39;</span><span class="p">:(</span><span class="s1">&#39;dem_address&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;community&#39;</span><span class="p">,)),</span>
+<span class="s1">&#39;custody_statuses&#39;</span><span class="p">:(</span><span class="s1">&#39;custody_status&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,))</span>
+    <span class="p">},</span>
+<span class="s1">&#39;ongoing flags&#39;</span><span class="p">:{</span><span class="s1">&#39;clients missing staff&#39;</span><span class="p">:(</span><span class="s1">&#39;service_lacks_staff&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;clients missing ISP&#39;</span><span class="p">:(</span><span class="s1">&#39;missing_isp&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;missing outreach assessments&#39;</span><span class="p">:(</span><span class="s1">&#39;assess_missing_outreach&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;no contact last month&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;last_30_days&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,)),</span>
+    <span class="s1">&#39;cpic notifications&#39;</span><span class="p">:(</span><span class="s1">&#39;cpic_summary&#39;</span><span class="p">,())</span>
+<span class="p">}</span>  
+    <span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">funcz</span><span class="p">,</span> <span class="n">standard_inputs</span><span class="p">,</span> <span class="s1">&#39;2024-08-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-08-31&#39;</span><span class="p">,</span><span class="n">interval</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">report_type</span> <span class="o">=</span> <span class="s1">&#39;ReferralAsks&#39;</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\referral_meeting_1024.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-digests">
+<h2>Data Digests<a class="headerlink" href="#data-digests" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standard_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;engine&#39;</span><span class="p">:</span> <span class="n">engine</span><span class="p">,</span>
+    <span class="s1">&#39;print_SQL&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;clipboard&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;mycase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;default_table&#39;</span><span class="p">:</span> <span class="s1">&#39;stints.neon&#39;</span>
+<span class="p">}</span>
+
+<span class="n">funcz</span> <span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;client programs&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment_bundles&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;service enrollment&#39;</span><span class="p">:(</span><span class="s1">&#39;enrollment&#39;</span><span class="p">,(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,)),</span>
+    <span class="s1">&#39;client flow&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;enrollment_flow&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;felony cases&#39;</span><span class="p">:(</span><span class="s1">&#39;legal_bonanza&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;case_type&#39;</span><span class="p">],</span> <span class="s1">&#39;class_type&#39;</span><span class="p">,)),</span>
+    <span class="s1">&#39;violent cases&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;legal_bonanza&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;case_type&#39;</span><span class="p">],</span> <span class="s1">&#39;violent&#39;</span><span class="p">,)),</span>
+    <span class="s1">&#39;clients with CM session&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;session_tally&#39;</span><span class="p">,(</span><span class="s1">&#39;Case Management&#39;</span><span class="p">,</span><span class="kc">True</span><span class="p">,)),</span>
+    <span class="s1">&#39;CM session frequency&#39;</span><span class="p">:(</span><span class="s1">&#39;session_frequency&#39;</span><span class="p">,(</span><span class="s1">&#39;Case Management&#39;</span><span class="p">,)),</span>
+    <span class="s1">&#39;CM session total&#39;</span><span class="p">:(</span><span class="s1">&#39;session_tally&#39;</span><span class="p">,(</span><span class="s1">&#39;Case Management&#39;</span><span class="p">,</span><span class="kc">False</span><span class="p">,)),</span>
+    <span class="s1">&#39;clients with outreach session&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;session_tally&#39;</span><span class="p">,(</span><span class="s1">&#39;Outreach&#39;</span><span class="p">,</span><span class="kc">True</span><span class="p">,)),</span>
+    <span class="s1">&#39;outreach session frequency&#39;</span><span class="p">:(</span><span class="s1">&#39;session_frequency&#39;</span><span class="p">,(</span><span class="s1">&#39;Outreach&#39;</span><span class="p">,)),</span>
+    <span class="s1">&#39;outreach session total&#39;</span><span class="p">:(</span><span class="s1">&#39;session_tally&#39;</span><span class="p">,(</span><span class="s1">&#39;Outreach&#39;</span><span class="p">,</span><span class="kc">False</span><span class="p">,)),</span>
+    <span class="s1">&#39;client linkage statuses&#39;</span><span class="p">:(</span><span class="s1">&#39;linkages_monthly&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,)),</span>
+    <span class="s1">&#39;linkage totals&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;linkages_tally&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;linkage education/employment&#39;</span><span class="p">:(</span><span class="s1">&#39;linkages_edu_employ&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="kc">True</span><span class="p">,)),</span>
+    <span class="s1">&#39;isp tracker&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;isp_tracker&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="mi">45</span><span class="p">,)),</span>
+    <span class="s1">&#39;isp goal status&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;isp_goal_tracker&#39;</span><span class="p">,()),</span>
+    <span class="s1">&#39;assm scores&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;assess_assm&#39;</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,)),</span>
+    <span class="s1">&#39;case outcomes&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;legal_bonanza&#39;</span><span class="p">,(</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;ended&#39;</span><span class="p">,</span> <span class="s1">&#39;highest_outcome&#39;</span><span class="p">,</span> <span class="s1">&#39;case_outcomes&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,)),</span>
+    <span class="s1">&#39;new cases&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;legal_rearrested&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kc">True</span><span class="p">,))</span>
+    <span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">funcz</span><span class="p">,</span> <span class="n">standard_inputs</span><span class="p">,</span> <span class="s1">&#39;2024-08-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-08-31&#39;</span><span class="p">,</span><span class="n">interval</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">report_type</span> <span class="o">=</span> <span class="s1">&#39;ReferralAsks&#39;</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">report_to_excel</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;C:\Users\eli\Downloads\data_digest_1024.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reporting_funcs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MODULE: reporting_funcs</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> {your-title}
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Report Examples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-a-report-object">initializing a Report object</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-functions">report_functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engine-settings">engine_settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-setup-of-the-report-object">Actual Setup of the Report Object</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-report-object">Using the Report Object</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-report-outputs">Inspecting Report Outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-excel-file">creating an excel file</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reports">Example Reports</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idhs">IDHS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-referral-meeting">Monthly Referral Meeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-digests">Data Digests</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By eli
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, eli.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

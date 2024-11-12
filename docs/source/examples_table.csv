@@ -1,0 +1,48 @@
+Category,I want to...,Function,Documentation
+Assessments,Get a count of clients with their earliest ASSM scores between 1-2,e.assess_assm(),:mod:`assess_assm <sql_funcs.Queries.assess_assm>`
+Assessments,Get a count of clients with their latest ASSM scores between 1-3,"e.assess_assm(cutoff_score=3, score_date='max')",:mod:`assess_assm <sql_funcs.Queries.assess_assm>`
+Assessments,Get clients missing outreach assessments,e.assess_missing_outreach,:mod:`assess_missing_outreach <sql_funcs.Queries.assess_missing_outreach>`
+Custody Statuses,Get a record of each clients' latest custody status,e.custody_status(),:mod:`custody_status <sql_funcs.Queries.custody_status>`
+Custody Statuses,Get the number of clients with each custody status,e.custody_status(summary_table=True),:mod:`custody_status <sql_funcs.Queries.custody_status>`
+Demographics,Get a table of each client's address,e.dem_address(),:mod:`dem_address <sql_funcs.Queries.dem_address>`
+Demographics,Get a count of the number of client's in each neighborhood,e.dem_address(group_by='community'),:mod:`dem_address <sql_funcs.Queries.dem_address>`
+Demographics,Get a count of the number of new clients in each zipcode,"e.dem_address(new_clients=True, group_by='zip')",:mod:`dem_address <sql_funcs.Queries.dem_address>`
+Demographics,Get the number of clients currently under 18,"e.dem_age(age=17, cutoff_date='current')",:mod:`dem_age <sql_funcs.Queries.dem_age>`
+Demographics,Get the number of clients under 19 at their time of enrollment,e.dem_age(cutoff_date='active'),:mod:`dem_age <sql_funcs.Queries.dem_age>`
+Demographics,Get the number of new clients under 19 at the start of the reporting period,"e.dem_age(new_clients=True, cutoff_date='report_period')",:mod:`dem_age <sql_funcs.Queries.dem_age>`
+Demographics,Get the genders of new clients,"e.dem_race_gender(new_clients=True, race_gender='gender')",:mod:`dem_race_gender <sql_funcs.Queries.dem_race_gender>`
+Demographics,Get client races,e.dem_race_gender(),:mod:`dem_race_gender <sql_funcs.Queries.dem_race_gender>`
+Client Enrollment,Get the total number of clients enrolled,e.enrollment(),:mod:`enrollment <sql_funcs.Queries.enrollment>`
+Client Enrollment,Get the number of clients enrolled in each program,e.enrollment(program_type=True),:mod:`enrollment <sql_funcs.Queries.enrollment>`
+Client Enrollment,Get the number of clients receiving each service for every program,"e.enrollment(program_type=True, service_type=True)",:mod:`enrollment <sql_funcs.Queries.enrollment>`
+Client Enrollment,Get the number of clients receiving each service on a grant,"e.enrollment(service_type=True, grant_type=True)",:mod:`enrollment <sql_funcs.Queries.enrollment>`
+Client Enrollment,Get the number of clients enrolled in each combination of programs,e.enrollment_bundles(),:mod:`enrollment_bundles <sql_funcs.Queries.enrollment_bundles>`
+Client Enrollment,Get the number of clients enrolled/unenrolled in the timeframe,e.enrollment_flow(),:mod:`enrollment_flow <sql_funcs.Queries.enrollment_flow>`
+Critical Incidents,Get the number of incident responses in the timeframe,e.incident_response(),:mod:`incident_response <sql_funcs.Queries.incident_response>`
+Critical Incidents,Get the number of incidents in the timeframe,e.incident_tally(),:mod:`incident_tally <sql_funcs.Queries.incident_tally>`
+ISPs,Get the number of discharged clients broken out by % of their service plan completed,e.isp_discharged(),:mod:`isp_discharged <sql_funcs.Queries.isp_discharged>`
+ISPs,Get a list of discharged clients with no ISPs recorded,e.isp_discharged(missing_names=True),:mod:`isp_discharged <sql_funcs.Queries.isp_discharged>`
+ISPs,Get the status of client ISP goals by domain,e.isp_goal_tracker(),:mod:`isp_goal_tracker <sql_funcs.Queries.isp_goal_tracker>`
+ISPs,Get a full table of ISP statuses for all clients,e.isp_tracker(just_cm=False),:mod:`isp_tracker <sql_funcs.Queries.isp_tracker>`
+ISPs,Get the count of case management clients missing a service plan after 60 days,"e.isp_tracker(summary_table=True, service_days_cutoff=60)",:mod:`isp_tracker <sql_funcs.Queries.isp_tracker>`
+Legal,Get client outcomes in the time period,"e.legal_bonanza(time_period=True, ranking_method='highest_outcome', grouping_cols='case_outcomes')",:mod:`legal_bonanza <sql_funcs.Queries.legal_bonanza>`
+Legal,Get types of cases begun in time period,"e.legal_bonanza(time_period=True, case_stage = 'started', grouping_cols='case_type')",:mod:`legal_bonanza <sql_funcs.Queries.legal_bonanza>`
+Legal,Get case outcomes grouped by violent status,"e.legal_bonanza(time_period=True, case_stage='ended', grouping_cols='case_outcome', wide_col='violent')",:mod:`legal_bonanza <sql_funcs.Queries.legal_bonanza>`
+Legal,Get the number of new cases picked up by clients,e.legal_rearrested(client_level=False),:mod:`legal_rearrested <sql_funcs.Queries.legal_rearrested>`
+Legal,Get the number of clients rearrested,e.legal_rearrested(),:mod:`legal_rearrested <sql_funcs.Queries.legal_rearrested>`
+Linkages,Get the number of case management clients enrolled/employed in their first 9 months,e.linkages_edu_employ(first_n_months=9),:mod:`linkages_edu_employ <sql_funcs.Queries.linkages_edu_employ>`
+Linkages,Get the number of clients currently enrolled/employed with an age cutoff of 19,"e.linkages_edu_employ(just_cm=False, ongoing=True, age_cutoff=19)",:mod:`linkages_edu_employ <sql_funcs.Queries.linkages_edu_employ>`
+Linkages,Get the number of case management clients enrolled/employed excluding workforce development linkages,e.linkages_edu_employ(include_wfd=False),:mod:`linkages_edu_employ <sql_funcs.Queries.linkages_edu_employ>`
+Linkages,Get the number of case management clients with lclc-initiated linkages in the current time period and their first 3/6/9 months,e.linkages_monthly(),:mod:`linkages_monthly <sql_funcs.Queries.linkages_monthly>`
+Linkages,Get the number of all clients with linkages in the time period,e.linkages_monthly(just_cm=True),:mod:`linkages_monthly <sql_funcs.Queries.linkages_monthly>`
+Linkages,"Get the number of case management clients with linkages in the time periods, including client-initiated linkages",e.linkages_monthly(lclc_initiated=False),:mod:`linkages_monthly <sql_funcs.Queries.linkages_monthly>`
+Linkages,Get the types of linkages recorded for all clients in the timeframe,e.linkages_tally(),:mod:`linkages_tally <sql_funcs.Queries.linkages_tally>`
+Linkages,Get the number of case management clients with an internal/external linkage at any time,"e.linkages_tally(just_cm=True, timeframe=False, distinct_clients=True, group_by='internal_external')",:mod:`linkages_tally <sql_funcs.Queries.linkages_tally>`
+Linkages,Get the number of clients with a started linkage of each type in the timeframe,"e.linkages_tally(distinct_clients=True, link_started=True)",:mod:`linkages_tally <sql_funcs.Queries.linkages_tally>`
+Linkages,"Get the number of clients linked to organizations at any time, with the linkage currently ongoing","e.linkages_tally(distinct_clients=True, group_by='linkage_org', link_started=True, link_ongoing=True)",:mod:`linkages_tally <sql_funcs.Queries.linkages_tally>`
+Outreach Assessments,"Get the number of new outreach clients with eligibility screenings/number of ""yes""es for each question",e.outreach_elig_tally(new_clients=True),:mod:`outreach_elig_tally <sql_funcs.Queries.outreach_elig_tally>`
+Outreach Assessments,"Get the number of all clients with eligibility screenings//number of ""yes""es for each question",e.outreach_elig_tally(outreach_only=False),:mod:`outreach_elig_tally <sql_funcs.Queries.outreach_elig_tally>`
+Case Sessions,Get the session regularity of case management clients,e.session_frequency(),:mod:`session_frequency <sql_funcs.Queries.session_frequency>`
+Case Sessions,Get the session regularity of outreach clients,"e.session_frequency(session_type=""Outreach"")",:mod:`session_frequency <sql_funcs.Queries.session_frequency>`
+Case Sessions,Get the number of clients with a case management session in the timeframe,e.session_tally(),:mod:`session_tally <sql_funcs.Queries.session_tally>`
+Case Sessions,Get the number of outreach sessions in the timeframe,"e.session_tally(session_type='Outreach', distinct_participants=False)",:mod:`session_tally <sql_funcs.Queries.session_tally>`

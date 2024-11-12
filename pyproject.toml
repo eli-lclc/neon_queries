@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "suave-sql"
+version = "0.1.0"
+description = ""
+authors = ["eli-lclc <ezerof@lclc.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
