@@ -22,7 +22,8 @@ jobs:
       run: |
         pip install -r docs/requirements.txt  # Ensure all dependencies are installed
 
-    - uses: ammaraskar/sphinx-action@0.4   # Use specific version for sphinx-action
+    - name: Build HTML
+      uses: ammaraskar/sphinx-action@0.4
       with:
         docs-folder: "docs/"
 
