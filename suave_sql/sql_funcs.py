@@ -394,15 +394,24 @@ class Audits(Tables):
         return(df)
     
     @clipboard_decorator
-    def service_lacks_staff(self):
+    def service_lacks_staff(self, active_only = True):
         '''
         Returns a table of active services without a corresponding staff member.
+
+        Parameters:
+            active_only (Bool): only looks at clients with active programs/services
         '''
+
+        if active_only:
+            where_statement = f'''where program_type = 'chd' and (program_end is null) and (service_end is null)'''
+
+        else:
+            where_statement = f'''where program_type = 'chd' and (program_end is null or program_end >= {self.q_t1}) and (service_end is null or service_end >= {self.q_t1})'''
 
         query = f'''with psg_table as (
         select * from (select first_name, last_name, participant_id from neon.basic_info) i
         join neon.big_psg using(participant_id)
-        where program_type = 'chd' and (program_end is null or program_end >= {self.q_t1}) and (service_end is null or service_end >= {self.q_t1})),
+        {where_statement}),
 
         staff as (
         select participant_id, full_name as assigned_staff, case 
@@ -1641,6 +1650,7 @@ class ReferralAsks(Queries):
                 e.missing_isp()
         '''
         query = f'''select participant_id, first_name, last_name, case_manager, cm_start, linkage_count, latest_linkage, isp_start from neon.cm_summary
+        join (select distinct participant_id from {self.table} where program_end is null and service_end is null) s using(participant_id)
         where isp_update is null
         order by linkage_count desc'''
         df = self.query_run(query)

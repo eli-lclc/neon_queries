@@ -153,8 +153,9 @@ class Report:
                     query_df.to_excel(writer,sheet_name=query_name,startrow=1 , startcol=0, index=False)
                 #index columns
                 nonnum_cols = [idx for idx, col in enumerate(query_df.select_dtypes(exclude=['number']).columns)]
-                worksheet.conditional_format(column_levels + 1, 0, query_df.shape[0] + column_levels, max(nonnum_cols),
-                {'type':'no_errors', 'format':index_format})
+                if nonnum_cols:
+                    worksheet.conditional_format(column_levels + 1, 0, query_df.shape[0] + column_levels, max(nonnum_cols),
+                    {'type':'no_errors', 'format':index_format})
                 #chart title
                 worksheet.merge_range(0, 0, 0, (query_df.shape[1])-1, query_name.upper(), chart_title_format)
 

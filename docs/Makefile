@@ -1,25 +1,37 @@
-# Minimal makefile for Sphinx documentation
-#
-
-# You can set these variables from the command line, and also
-# from the environment for the first two.
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
 
-clean:
-	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O);
-	git worktree add -f docs/build/html gh-pages
-
-# Put it first so that "make" without argument is like "make help".
+# Help target
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+# Setup gh-pages worktree
+setup-gh-pages:
+	@if not exist "$(BUILDDIR)/html/.git" (
+		echo Setting up gh-pages worktree...
+		if not exist "$(BUILDDIR)" mkdir $(BUILDDIR)
+		cd $(BUILDDIR) && git worktree add html gh-pages
+	)
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
+# Clean target
+clean:
+	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@if exist "$(BUILDDIR)/html/.git" (
+		echo "Removing existing gh-pages worktree..."
+		cd $(BUILDDIR) && git worktree remove html
+	)
+	@if not exist "$(BUILDDIR)/html/.git" (
+		echo "Re-adding gh-pages worktree..."
+		cd $(BUILDDIR) && git worktree add html gh-pages
+	)
+
+
+# Catch-all target
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-
+	@if not exist "$(BUILDDIR)/html/.git" (
+		echo Setting up gh-pages worktree...
+		cd $(BUILDDIR) && git worktree add html gh-pages
+	)

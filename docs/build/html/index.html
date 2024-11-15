@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>suave_sql documentation &#8212; suave_sql 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MODULE: sql_funcs" href="suave_sql.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="suave_sql.html">MODULE: sql_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_table.html">sql_funcs reference table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting_funcs.html">MODULE: reporting_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html">Report Examples</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>suave_sql documentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="suave-sql-documentation">
+<h1>suave_sql documentation<a class="headerlink" href="#suave-sql-documentation" title="Link to this heading">#</a></h1>
+<p>sql_funcs is the major player
+reporting_funcs streamlines the process of reporting many functions</p>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="suave_sql.html">MODULE: sql_funcs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="suave_sql.html#general-functions">General Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries"><code class="docutils literal notranslate"><span class="pre">Queries</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.assess_assm"><code class="docutils literal notranslate"><span class="pre">assess_assm()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.assess_missing_outreach"><code class="docutils literal notranslate"><span class="pre">assess_missing_outreach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.custody_status"><code class="docutils literal notranslate"><span class="pre">custody_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.dem_address"><code class="docutils literal notranslate"><span class="pre">dem_address()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.dem_age"><code class="docutils literal notranslate"><span class="pre">dem_age()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.dem_race_gender"><code class="docutils literal notranslate"><span class="pre">dem_race_gender()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.enrollment"><code class="docutils literal notranslate"><span class="pre">enrollment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.enrollment_bundles"><code class="docutils literal notranslate"><span class="pre">enrollment_bundles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.enrollment_flow"><code class="docutils literal notranslate"><span class="pre">enrollment_flow()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.incident_tally"><code class="docutils literal notranslate"><span class="pre">incident_tally()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.incident_response"><code class="docutils literal notranslate"><span class="pre">incident_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.isp_goal_tracker"><code class="docutils literal notranslate"><span class="pre">isp_goal_tracker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.isp_tracker"><code class="docutils literal notranslate"><span class="pre">isp_tracker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.isp_discharged"><code class="docutils literal notranslate"><span class="pre">isp_discharged()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.legal_bonanza"><code class="docutils literal notranslate"><span class="pre">legal_bonanza()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.legal_rearrested"><code class="docutils literal notranslate"><span class="pre">legal_rearrested()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.linkages_edu_employ"><code class="docutils literal notranslate"><span class="pre">linkages_edu_employ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.linkages_monthly"><code class="docutils literal notranslate"><span class="pre">linkages_monthly()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.linkages_tally"><code class="docutils literal notranslate"><span class="pre">linkages_tally()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.outreach_elig_tally"><code class="docutils literal notranslate"><span class="pre">outreach_elig_tally()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.session_tally"><code class="docutils literal notranslate"><span class="pre">session_tally()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Queries.session_frequency"><code class="docutils literal notranslate"><span class="pre">session_frequency()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="suave_sql.html#module-sql_funcs">Specific-Use Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits"><code class="docutils literal notranslate"><span class="pre">Audits</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits.program_lacks_services"><code class="docutils literal notranslate"><span class="pre">program_lacks_services()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits.service_lacks_grant"><code class="docutils literal notranslate"><span class="pre">service_lacks_grant()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits.service_lacks_staff"><code class="docutils literal notranslate"><span class="pre">service_lacks_staff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Audits.staff_lacks_service"><code class="docutils literal notranslate"><span class="pre">staff_lacks_service()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks"><code class="docutils literal notranslate"><span class="pre">ReferralAsks</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.highest_cases"><code class="docutils literal notranslate"><span class="pre">highest_cases()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.cm_closures"><code class="docutils literal notranslate"><span class="pre">cm_closures()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.cpic_summary"><code class="docutils literal notranslate"><span class="pre">cpic_summary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.missing_isp"><code class="docutils literal notranslate"><span class="pre">missing_isp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.ReferralAsks.last_30_days"><code class="docutils literal notranslate"><span class="pre">last_30_days()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS"><code class="docutils literal notranslate"><span class="pre">IDHS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_enrollment"><code class="docutils literal notranslate"><span class="pre">idhs_enrollment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_race_gender"><code class="docutils literal notranslate"><span class="pre">idhs_race_gender()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_language"><code class="docutils literal notranslate"><span class="pre">idhs_language()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_age"><code class="docutils literal notranslate"><span class="pre">idhs_age()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_linkages"><code class="docutils literal notranslate"><span class="pre">idhs_linkages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_linkages_detailed"><code class="docutils literal notranslate"><span class="pre">idhs_linkages_detailed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.IDHS.idhs_incidents"><code class="docutils literal notranslate"><span class="pre">idhs_incidents()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="suave_sql.html#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables"><code class="docutils literal notranslate"><span class="pre">Tables</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.query_run"><code class="docutils literal notranslate"><span class="pre">query_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.query_modify"><code class="docutils literal notranslate"><span class="pre">query_modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.stints_run"><code class="docutils literal notranslate"><span class="pre">stints_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.run_report"><code class="docutils literal notranslate"><span class="pre">run_report()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="suave_sql.html#sql_funcs.Tables.table_update"><code class="docutils literal notranslate"><span class="pre">table_update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples_table.html">sql_funcs reference table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting_funcs.html">MODULE: reporting_funcs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report"><code class="docutils literal notranslate"><span class="pre">Report</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.run_a_report"><code class="docutils literal notranslate"><span class="pre">run_a_report()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.report_to_excel"><code class="docutils literal notranslate"><span class="pre">report_to_excel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.make_date_dict"><code class="docutils literal notranslate"><span class="pre">make_date_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.generate_reports"><code class="docutils literal notranslate"><span class="pre">generate_reports()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting_funcs.html#reporting_funcs.Report.consolidate_query_outputs"><code class="docutils literal notranslate"><span class="pre">consolidate_query_outputs()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html">Report Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html#initializing-a-report-object">initializing a Report object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#report-functions">report_functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#engine-settings">engine_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#actual-setup-of-the-report-object">Actual Setup of the Report Object</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html#using-the-report-object">Using the Report Object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#inspecting-report-outputs">Inspecting Report Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#creating-an-excel-file">creating an excel file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html#example-reports">Example Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#idhs">IDHS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#monthly-referral-meeting">Monthly Referral Meeting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="report_examples.html#data-digests">Data Digests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="suave_sql.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MODULE: sql_funcs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By eli
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, eli.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
