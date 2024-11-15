@@ -28,7 +28,7 @@ jobs:
         git add .
         git commit -m "Update documentation" -a || true  # The command fails if no changes
     - name: Push changes
-      uses: ad-m/github-push-action@v0.6  # Specify a fixed version for github-push-action
+      uses: ad-m/github-push-action@v0.5.0  # Specify a fixed version for github-push-action
       with:
         branch: gh-pages
         directory: gh-pages
