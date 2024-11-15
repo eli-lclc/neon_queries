@@ -26,7 +26,7 @@ release = '0.0.1'
 extensions = ['sphinx.ext.napoleon',
 'sphinx.ext.autodoc', 
 'sphinx.ext.autosectionlabel',
-"myst-nb",
+"myst_nb",
 'sphinx.ext.githubpages']
 
 templates_path = ['_templates']

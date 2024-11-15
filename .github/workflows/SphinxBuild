@@ -1,22 +1,42 @@
 name: Sphinx build
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   sphinx-build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Install Pandoc
+    - name: Install Pandoc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc
+
+    # Build HTML using Sphinx
     - name: Build HTML
-      with:
-        pre-build-command: "apt install -y pandoc"
       uses: ammaraskar/sphinx-action@0.4
-    - name: Upload artifacts
+      with:
+        sphinx_args: "-b html" # specify build format as HTML
+        source_dir: "docs/source" # adjust to your source directory if needed
+        build_dir: "docs/build/html" # adjust to your desired output folder
+
+    # Upload HTML build artifacts
+    - name: Upload HTML artifacts
       uses: actions/upload-artifact@v1
       with:
         name: html-docs
         path: docs/build/html/
-    - name: Deploy
+
+    # Deploy to gh-pages
+    - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
       with:
