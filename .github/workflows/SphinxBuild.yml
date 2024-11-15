@@ -12,10 +12,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3   # Use latest version of checkout
+
     - name: Install build essentials
       run: |
         sudo apt update
         sudo apt install -y build-essential
+
+    - name: Install dependencies
+      run: |
+        pip install -r docs/requirements.txt  # Ensure all dependencies are installed
+
     - uses: ammaraskar/sphinx-action@0.4   # Use specific version for sphinx-action
       with:
         docs-folder: "docs/"
@@ -29,8 +35,8 @@ jobs:
         touch .nojekyll
         git config --local user.email "ezerof@lclc.net"
         git config --local user.name "eli-lclc"
-        git add .
-        git commit -m "Update documentation" -a || true  # The command fails if no changes
+        git diff --exit-code || (git add . && git commit -m "Update documentation")
+
     - name: Push changes
       uses: ad-m/github-push-action@v0.5.0  # Specify a fixed version for github-push-action
       with:
