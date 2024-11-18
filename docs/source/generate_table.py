@@ -10,6 +10,12 @@ import pandas as pd
 
 sys.path.insert(0, os.path.abspath('../../suave_sql'))
 
+if __name__ == "__main__":
+    # Add paths if running outside of Sphinx
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, os.path.abspath(os.path.join(current_dir, '../../suave_sql')))
+    sys.path.insert(0, os.path.abspath(os.path.join(current_dir, '../../tests')))
+
 sys.modules["sqlalchemy"] = MagicMock()
 sys.modules["pyperclip"] = MagicMock()
 

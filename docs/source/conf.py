@@ -14,6 +14,11 @@ repo_root = os.path.abspath(os.path.join(docs_dir, "../../"))
 sys.path.insert(0, os.path.join(repo_root, "suave_sql"))
 sys.path.insert(0, os.path.join(repo_root, "tests"))
 
+print("Current working directory:", os.getcwd())
+print("sys.path:")
+for path in sys.path:
+    print(path)
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
