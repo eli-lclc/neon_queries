@@ -9,8 +9,10 @@ import subprocess
 import site
 
 # Add site-packages path to sys.path
-sys.path.insert(0, os.path.abspath('../../suave_sql'))
-sys.path.insert(0, os.path.abspath('../../tests'))
+docs_dir = os.path.dirname(os.path.abspath(__file__))
+repo_root = os.path.abspath(os.path.join(docs_dir, "../../"))
+sys.path.insert(0, os.path.join(repo_root, "suave_sql"))
+sys.path.insert(0, os.path.join(repo_root, "tests"))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
