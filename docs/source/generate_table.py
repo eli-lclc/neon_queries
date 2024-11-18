@@ -41,8 +41,11 @@ def extract_category(string):
     '''
     group queries by category
     '''
-    str_cat = string.split('_')[0]
-    category = category_dict[str_cat]
+    if string == '__init__':
+        category = 'Setup'
+    else:
+        str_cat = string.split('_')[0]
+        category = category_dict[str_cat]
     return category
 
 

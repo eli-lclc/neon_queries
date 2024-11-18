@@ -27,8 +27,17 @@ class Tables:
             t2: end date, formatted as "YYYY-MM-DD"
             print_sql(Bool): whether to print the SQL statements when run, defaults to True
             clipboard(Bool): whether to copy the output table to your clipboard, defaults to False
-            default_table: the source table to run queries on. defaults to "stints.neon"
+            default_table: the source table to run queries on. defaults to "stints.neon", can also use "stints.neon_chd", or a participants table
             mycase(Bool): whether the user has a formatted MyCase SQL database, defaults to True
+        
+        Examples:
+            Set up a table of all clients in Neon in 2024 ::
+            
+                e = Queries(t1 = '2024-01-01', t2='2024-12-31')
+            
+            Set up a table of CHD clients in Q3 of 2024::
+
+                e = Queries(t1= '2024-07-01', t2= '2024-09-30', default_table = stints.neon_chd)
 
 
         '''
@@ -475,9 +484,20 @@ class Queries(Audits):
         t2: end date, formatted as "YYYY-MM-DD"
         print_sql (Bool): whether to print the SQL statements when run, defaults to True
         clipboard (Bool): whether to copy the output table to your clipboard, defaults to False
-        default_table: the source table to run queries on. defaults to "stints.neon"
-    
+        default_table: the source table to run queries on. defaults to "stints.neon", can also use "stints.neon_chd", or a participants table
+        mycase(Bool): whether the user has a formatted MyCase SQL database, defaults to True
+        establishes settings and runs stints for the desired time period
+
+    Examples:
+        Create an object of all clients in Neon in 2024 ::
+        
+            e = Queries(t1 = '2024-01-01', t2='2024-12-31')
+        
+        Create an object of CHD clients in Q3 of 2024::
+
+            e = Queries(t1= '2024-07-01', t2= '2024-09-30', default_table = stints.neon_chd)
     '''
+
     @clipboard_decorator
     def assess_assm(self, cutoff_score = 2, score_date = 'min'):
         '''
@@ -554,7 +574,7 @@ class Queries(Audits):
         Example:
             Get clients missing outreach assessments::
                 
-                e.assess_missing_outreach
+                e.assess_missing_outreach()
         '''
 
         query = f'''

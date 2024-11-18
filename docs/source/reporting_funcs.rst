@@ -1,5 +1,5 @@
-MODULE: reporting\_funcs
-=========================
+reporting\_funcs documentation
+==================================================
 .. automodule:: reporting_funcs
    :members:
    :undoc-members:

@@ -1,5 +1,5 @@
 
-MODULE: sql\_funcs
+sql\_funcs documentation
 ====================
 
 .. contents:: Table of Contents
