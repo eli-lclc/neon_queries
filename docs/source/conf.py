@@ -66,8 +66,8 @@ toc_object_entries_show_parents = 'hide'
 
 autosectionlabel_prefix_document = True
 
-jupyter_execute_notebooks = "auto"  # Ensure this is correct
-nb_execution_mode = "auto"         # Default execution mode
+jupyter_execute_notebooks = "off"  # Ensure this is correct
+nb_execution_mode = "off"         # Default execution mode
 
 
 def skip(app, what, name, obj, would_skip, options):
