@@ -19,7 +19,7 @@ if __name__ == "__main__":
 sys.modules["sqlalchemy"] = MagicMock()
 sys.modules["pyperclip"] = MagicMock()
 
-from suave_sql.sql_funcs import Queries
+from sql_funcs import Queries
 
 
 import os
