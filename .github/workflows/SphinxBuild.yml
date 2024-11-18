@@ -41,6 +41,9 @@ jobs:
         run: | 
           cd docs
           sphinx-build -b html source build/html
+      - name: List contents of build directory for debug
+        run: |
+          ls -R docs
       - name: Run ghp-import
         run: | 
           ghp-import -n -p -f build/html
