@@ -3,12 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-suave_sql documentation
+neon_queries documentation
 =======================
 
-sql_funcs is the major player
-reporting_funcs streamlines the process of reporting many functions
+sql_funcs houses all individual queries, while reporting_funcs streamlines the process of reporting many functions. 
+For a table of example queries, check the :doc:`examples_table`, and for a walkthrough of reports check :doc:`report_examples`.
 
+
+
+
+
+Full Table of Contents
+--------------------------
 .. toctree::
    :maxdepth: 6
    :caption: Pages
