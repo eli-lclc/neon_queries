@@ -1,6 +1,5 @@
 sql_funcs reference table
-=======================
-a subset of 
+==============================================
 
 .. csv-table:: Query Examples
     :file: examples_table.csv
