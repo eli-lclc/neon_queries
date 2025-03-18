@@ -1063,6 +1063,15 @@ class Queries(Audits):
         Parameters:
             timeframe (Bool): only looks at score changes in the timeframe. Defaults to True
             min_score: the lowest pre-assessment score to consider. Defaults to None 
+        
+        Examples:
+            Get count of assessment score changes within timeframe::
+                
+                e.assess_score_change()
+            
+            Get all-time count of assessment score changes for initial scores of 32+::
+                
+                e.assess_score_change(timeframe=False, min_score=32)
         '''
 
         where_statement = f"""and latest_date >= {self.q_t1} and earliest_date <= {self.q_t2}""" if timeframe else ''
