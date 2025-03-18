@@ -49,7 +49,7 @@ html_theme = 'sphinx_book_theme'
 html_theme_options = {
     "show_navbar_depth": 4,
     "max_navbar_depth": 6,
-    "show_toc_level": 4
+    "show_toc_level": 5
 }
 
 
