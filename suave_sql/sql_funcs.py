@@ -206,8 +206,8 @@ left join sessions using(participant_id))
 
 drop table if exists assess.outreach_tracker;
 create table assess.outreach_tracker as(
-with parts as (select participant_id, service_id, first_name, last_name, outreach_workers outreach_worker, service_start outreach_start from stints.neon_chd
-where service_type like 'Outreach' and service_end is null),
+with parts as (select distinct(participant_id), service_id, first_name, last_name, outreach_workers outreach_worker, service_start outreach_start from stints.neon
+where service_type like 'Outreach'),
 eligibility as (select participant_id, count(distinct assessment_date) as elig_count, max(assessment_date) as latest_elig from assess.outreach_eligibility
 group by participant_id),
 assessment as (
@@ -294,7 +294,7 @@ select *, ROW_NUMBER() OVER (partition by service_id ORDER BY case when staff_en
 from abr_staff) abr),
 
 service_table as (
-select service_id, group_concat(staff_name order by staff_start desc SEPARATOR ', ') assigned_staff
+select service_id, group_concat(staff_name order by staff_start desc SEPARATOR ', ') assigned_staff, max(staff_start) staff_start, max(staff_end) staff_end
 from 
 (select * from abr_w_rn where rn = 1) ab
 group by participant_id, service_id),
@@ -304,7 +304,7 @@ left join (select participant_id, service_type, max(service_start) service_start
 group by participant_id, service_type) s using (participant_id, service_type, service_start))
 
 select participant_id, service_id, service_type, case when assigned_staff is null then "MISSING" else assigned_staff end assigned_staff,
-latest_service from
+staff_start, staff_end, latest_service from
 (select * from latest_service
 left join service_table using(service_id)) s);
 
@@ -381,7 +381,7 @@ ORDER BY participant_id, stint_start);
             else 'Missing' end as class_type,
             class_prior_to_trial_plea, class_after_trial_plea, 
             case_outcome, case_outcome_date, sentence, probation_type, probation_requirements, sentence_length,
-            expungable_sealable, expunge_seal_elig_date, expunge_seal_date, was_sentence_reduced, reduction_explain, case_entered_date, outcome_entered_date,
+            expungable_sealable, expunge_seal_elig_date, expunge_seal_date, was_sentence_reduced, reduction_explain, probation_projected_end, probation_status_at_end, case_entered_date, outcome_entered_date,
             go_to_trial
             from stinted sc 
             left join neon.legal using(participant_id, legal_id)
@@ -433,29 +433,8 @@ ORDER BY participant_id, stint_start);
     
     def table_update(self, desired_table, update_default_table = False):
         statements = None
-        if desired_table.lower() == 'idhs':
-            new_table = 'participants.idhs'
-            statements = f'''
-            drop table if exists {new_table};
-            create table {new_table} as(
-            with idhs as (select *, case when (grant_start between {self.q_t1} and {self.q_t2}) then 'new' else 'continuing' end as new_client,
-            case when program_end between {self.q_t1} and {self.q_t2} then 'program'
-            when service_end between {self.q_t1} and {self.q_t2} or grant_end between {self.q_t1} and {self.q_t2} then 'service'
-            else null end as discharged_client
-            from stints.neon
-            where grant_type = 'IDHS VP'),
-
-            discharged_prog as (select participant_id, service_count from (
-            select participant_id, count(participant_id) as service_count, count(case when discharged_client is not null then participant_id else null end) as discharge_ct from idhs
-            group by participant_id) s
-            where service_count = discharge_ct)
-
-            select participant_id, first_name, last_name, program_type, program_start, program_end, service_type, service_start, service_end, grant_type, grant_start, grant_end,
-            gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys, new_client, 
-            case when discharged_client = 'service' and service_count is not null then 'program' else discharged_client end as discharged_client from idhs
-            left join discharged_prog using(participant_id))
-            '''
-        if desired_table.lower() == 'rjcc':
+        desired_table = desired_table.lower()
+        if desired_table == 'rjcc':
             new_table = 'stints.rjcc'
             statements = f'''
             drop table if exists {new_table};
@@ -486,6 +465,38 @@ ORDER BY participant_id, stint_start);
             group by participant_id) pc using(participant_id)) s using(participant_id)
             where program_type = 'rjcc' or program_count = 1);
             '''
+        else:
+            grant_dict = {'idhs': 'IDHS VP',
+                        'idhs_r':'IDHS - R',
+                        'cvi': 'ICJIA - CVI',
+                        'r3': 'ICJIA - R3',
+                        'scan':'DFSS - SCAN',
+                        'ryds': 'IDHS - RYDS'}
+            if desired_table in grant_dict: 
+                grant_type = f"'{grant_dict[desired_table]}'"
+                new_table = f'participants.{desired_table}'
+                statements = f'''
+                drop table if exists {new_table};
+                create table {new_table} as(
+                with idhs as (select *, case when (grant_start between {self.q_t1} and {self.q_t2}) then 'new' else 'continuing' end as new_client,
+                case when program_end between {self.q_t1} and {self.q_t2} then 'program'
+                when service_end between {self.q_t1} and {self.q_t2} or grant_end between {self.q_t1} and {self.q_t2} then 'service'
+                else null end as discharged_client
+                from stints.neon
+                where grant_type = {grant_type}),
+
+                discharged_prog as (select participant_id, service_count from (
+                select participant_id, count(participant_id) as service_count, count(case when discharged_client is not null then participant_id else null end) as discharge_ct from idhs
+                group by participant_id) s
+                where service_count = discharge_ct)
+
+                select participant_id, first_name, last_name, program_type, program_start, program_end, service_type, service_start, service_end, grant_type, grant_start, grant_end,
+                gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys, new_client, 
+                case when discharged_client = 'service' and service_count is not null then 'program' else discharged_client end as discharged_client from idhs
+                left join discharged_prog using(participant_id))
+                '''
+            
+
         if statements:
             for statement in statements.split(';'):
                 if statement.strip():
@@ -1097,6 +1108,49 @@ class Queries(Audits):
         '''
         df = self.query_run(query)
         return(df)
+    
+    def assess_inventory_categories(self, timeframe = True, distinct_clients = False):
+        '''
+        Counts # of risk factor, protective, and strength-based inventories for clients.
+
+        (add more)
+        '''
+        distinct = 'distinct ' if distinct_clients else ''
+        timeframe = f'and assessment_date between {self.q_t1} and {self.q_t2}' if timeframe else ''
+
+        query = f'''
+        with cm as (select participant_id, assessment_date, assessment_type,
+        case when assessment_type = 'ASSM' then 'Asset'
+			when assessment_type regexp "BP|PCL" then 'Risk'
+            else 'Protective' end as assessment_category
+        from assess.cm_long
+        union all
+        select participant_id, assessment_date, 
+        'Needs Assessment' assessment_type, 'Protective' assessment_category 
+        from assess.needs_assessment_full
+                ),
+        outreach as (
+        select participant_id, assessment_date, 
+        'Outreach Eligibility' assessment_type, 'Protective' assessment_category 
+        from assess.outreach_eligibility
+        union all
+        select participant_id, assessment_date, 
+        'Safety Assessment' assessment_type, 'Protective' assessment_category 
+        from assess.safety_assessment
+        union all
+        select participant_id, assessment_date, 
+        'Safety Plan' assessment_type, 'Protective' assessment_category 
+        from assess.safety_intervention)
+
+        select assessment_category, count({distinct}participant_id) count from
+        (select * from cm
+        union all
+        select * from outreach) a
+        where participant_id in (select distinct participant_id from {self.table}) {timeframe}
+        group by assessment_category
+        '''
+        df = self.query_run(query)
+        return(df)
 
 
     @clipboard_decorator
@@ -1120,11 +1174,11 @@ class Queries(Audits):
         query = f'''
         with parts as (
         select distinct participant_id, first_name, last_name, program_start
-        from {self.table}
-        where program_type regexp 'chd|community navigation'),
+        from {self.table}),
         cust_elig as (select * from parts
         join neon.custody_status using(participant_id)
-        where datediff(custody_status_date, program_start) >= -90),
+        join stints.stint_count using(participant_id)
+        where (stint_count = 1 or datediff(custody_status_date, program_start) >= -90)),
         cust as (
         select participant_id, custody_status, custody_status_date from cust_elig
         join (select participant_id, max(custody_status_id) custody_status_id from cust_elig 
@@ -1173,7 +1227,7 @@ class Queries(Audits):
             with ranked_addresses as (select *,
             ROW_NUMBER() OVER (partition by participant_id ORDER BY primary_address DESC, address_id DESC, civicore_address_id asc) AS rn
             from neon.address
-            join (select distinct participant_id, first_name, last_name from stints.neon) sn using(participant_id)),
+            join (select distinct participant_id, first_name, last_name from {self.table}) sn using(participant_id)),
             address_table as(
             select participant_id, first_name, last_name, address1, address2, city, state, zip, primary_address, community
             from ranked_addresses
@@ -1184,7 +1238,7 @@ class Queries(Audits):
             with ranked_addresses as (select *,
             ROW_NUMBER() OVER (partition by participant_id ORDER BY primary_address DESC, address_id DESC, civicore_address_id asc) AS rn
             from neon.address
-            join (select distinct participant_id, first_name, last_name from stints.neon
+            join (select distinct participant_id, first_name, last_name from {self.table}
             where program_start between {self.q_t1} and {self.q_t2}) sn using(participant_id)),
             address_table as(
             select participant_id, first_name, last_name, address1, address2, city, state, zip, primary_address, community
@@ -1795,6 +1849,13 @@ class Queries(Audits):
         df = self.query_run(query)
         return(df)
 
+    def linkages_edu_completed(self):
+        query = f'''select participant_id, linkage_org, comments from neon.linkages
+        join (select distinct participant_id from  {self.table}) n using(participant_id)
+        where linkage_type regexp 'education.*' and end_date between {self.q_t1} and {self.q_t2} and end_status = 'Successfully Completed';
+        '''
+        df = self.query_run(query)
+        return(df)
 
     @clipboard_decorator
     def linkages_edu_employ(self, just_cm = True,first_n_months = None, ongoing = False, age_threshold = 18, new_client_threshold = 45, include_wfd = True):
@@ -1878,6 +1939,16 @@ class Queries(Audits):
         df = self.query_run(query)
         return(df)
 
+    def linkages_edu_employ_new(self, cm_only = False):
+        query = f'''select linkage_type, count(distinct participant_id) participants from neon.linkages
+        join (select distinct participant_id from {self.table}
+            {f"where service_type = 'Case Management'" if cm_only else ''}) n using(participant_id)
+        where linkage_type regexp 'education.*|employ.*|work.*' and start_date between {self.q_t1} and {self.q_t2}
+        group by linkage_type'''
+
+        df = self.query_run(query)
+        return(df)
+
     @clipboard_decorator
     def linkages_monthly(self, lclc_initiated = True, just_cm = False):
         '''
@@ -1932,21 +2003,23 @@ class Queries(Audits):
     
 
     @clipboard_decorator
-    def linkages_percent(self, timeframe = True, new_client_threshold = 45):
+    def linkages_percent(self, timeframe = True, new_client_threshold = 45, cm_only = True):
         '''
         Get percent of clients with linkage, broken out by custody/newness
 
         Parameters:
             timeframe (Bool): Only include records with a linked_date in the timeframe. Defaults to True
             new_client_threshold (int): number of days required to be considered "continuing". defaults to 45
+            cm_only (Bool): Only count case management clients. Defaults to True
         '''
         timeframe_statement = f'and linked_date between {self.q_t1} and {self.q_t2}' if timeframe else ''
+        cm_only_statement = "where service_type = 'Case Management'" if cm_only else ''
 
         query = f'''
         with part as (
         select participant_id, age, program_start, service_start,case when datediff({self.q_t2}, service_start) > {new_client_threshold} then 'cont' else 'new' end as newness
         from {self.table}
-        where service_type = 'Case Management'),
+        {cm_only_statement}),
         cust as(
         select participant_id, custody_status from neon.custody_status
         join (select participant_id, program_start, service_start,max(custody_status_date) as custody_status_date from part
@@ -2081,6 +2154,18 @@ join (SELECT participant_id, max(stint_num) stint_num FROM stints.stints_plus_st
         df = self.query_run(query)
         return df
     
+    @clipboard_decorator
+    def mediation_tally(self,timeframe=True):
+        ''''''
+        timeframe_statement = f"""where mediation_start between{self.q_t1} and {self.q_t2}""" 
+        query = f'''select mediation_outcome, count(mediation_id)
+        from neon.mediations 
+        {timeframe_statement} 
+        group by mediation_outcome
+        '''
+        df = self.query_run(query)
+
+        return df
 
     @clipboard_decorator
     def session_tally (self, session_type = 'Case Management', distinct_participants=True):
@@ -2317,11 +2402,108 @@ class ReferralAsks(Queries):
         df = self.query_run(query)
         return(df)
 
-class IDHS(Queries):
-    def __init__(self, t1, t2, engine, print_SQL = True, clipboard = False, default_table="stints.neon",mycase = True):
+
+class Grants(Queries):
+    def __init__(self, t1, t2, engine, print_SQL = True, clipboard = False, default_table="stints.neon",mycase = True,grant_type='idhs'):
+        '''
+        grant_types: 'idhs', 'idhs_r', 'r3', 'scan', 'ryds'
+        '''
         super().__init__(t1, t2, engine, print_SQL, clipboard, default_table, mycase)
-        self.table_update('idhs', update_default_table = True)
+        self.table_update(grant_type, update_default_table = True)
+
+    def cvi_demographics(self):
+        query = f'''with ages as(
+        select 'age','0-5' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 0 AND 5
+        UNION ALL
+        select 'age','6-11' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 11 AND 13
+        UNION ALL
+        select 'age','12-14' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 12 AND 14
+        UNION ALL
+        select 'age','15-17' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 14 AND 17
+        UNION ALL
+        select 'age','18-25' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 18 AND 25
+        UNION ALL
+        select 'age','26+' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) > 25
+        UNION ALL 
+        select 'age','MISSING' as age_range, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+        from participants.cvi
+        where birth_date is null),
+        genders as(
+        select 'gender' as 'category',gender, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+from participants.cvi
+group by gender),
+races as (select 'race' as 'category',race, count(distinct case when new_client = 'continuing' then participant_id else null end) 'continuing',
+count(distinct case when new_client = 'new' then participant_id else null end) 'new',
+count(distinct case when discharged_client is not null then participant_id else null end) 'discharged'
+from participants.cvi
+group by race)
+
+select * from races
+union all
+select * from genders
+union all
+select * from ages'''
+        df = self.query_run(query)
+        return df
     
+    def cvi_mental_health_linkages(self):
+
+        query = f'''
+        select count(distinct case when linked_date between {self.q_t1} and {self.q_t2} and client_initiated = 'No' then participant_id else null end) linkages_made,
+        count(distinct case when start_date between {self.q_t1} and {self.q_t2} then participant_id else null end) linkages_started
+        from neon.linkages
+        where (internal_program = 'therapy' or linkage_type = 'mental health') and participant_id in (select participant_id from participants.cvi)
+        '''
+
+        df = self.query_run(query)
+        return df
+    
+    def cvi_post_incident(self):
+        '''
+        Returns number of people received services after homicide shooting
+
+        Example:
+            Get # of people who received services after homicide shooting::
+
+                e.cvi_post_incident()
+        '''
+        query = f'''
+        select type_incident, sum(num_individuals) as total_ppl from neon.critical_incidents
+        where num_deceased > 0 and incident_date between {self.q_t1} and {self.q_t2}
+        group by type_incident
+        '''
+        df = self.query_run(query)
+        return(df)
+
+
     def idhs_enrollment(self):
         '''
         Returns a table of enrollment numbers for IDHS
@@ -2387,23 +2569,23 @@ class IDHS(Queries):
         df = self.query_run(query)
         return df
 
-    def idhs_age(self, ppr = False):
+    def idhs_age(self, cvi = False):
         '''
         Returns a table of client ages broken out by new client status
 
         Parameters:
-            ppr (Bool): whether to use the age groups on the PPR form. Defaults to False
+            cvo (Bool): whether to use the age groups on the CVI form. Defaults to False
         
         Examples:
-            Get IDHS client ages for the PPR::
+            Get IDHS client ages for the CVI::
 
                 e.idhs_age(True)
             
-            Get IDHS client ages for the CVI::
+            Get IDHS client ages for the PPR::
 
                 e.idhs_age(False)
         '''
-        if ppr:
+        if cvi:
             query = f'''
             select 'Under 18' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
             count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
@@ -2455,12 +2637,13 @@ class IDHS(Queries):
         return(df)
     
     
-    def idhs_linkages(self, internal_external = False):
+    def idhs_linkages(self, internal_external = False, cm_only = True):
         '''
         Returns a table of linkage information for the quarter
         
         Parameters:
             internal_external: whether to group by internal/external functions. Defaults to False
+            cm_only: whether to only count clients with case management funded by grant. Defaults to True
         
         Examples:
             Get IDHS client linkages by linkage category::
@@ -2474,10 +2657,11 @@ class IDHS(Queries):
         
         
         int_ext = 'internal_external' if internal_external else 'linkage_type'
+        cm_only_statement = "where service_type = 'case management'" if cm_only else ''
         query = f'''
         with link as(
         select participant_id, new_client, case when linkage_type is null then internal_program else linkage_type end as linkage_type, internal_external, linkage_org from neon.linkages
-        join (select distinct participant_id, new_client from {self.table} where service_type = 'case management') i using(participant_id)
+        join (select distinct participant_id, new_client from {self.table} {cm_only_statement}) i using(participant_id)
         where client_initiated = 'no' and linked_date between {self.q_t1} and {self.q_t2})
 
         select {int_ext}, count(case when new_client = 'new' then participant_id else null end) as new_links,
@@ -2490,7 +2674,8 @@ class IDHS(Queries):
 
     def idhs_linkages_detailed(self):
         '''
-        Returns a Frankensteined table of other forms of 'detail-level services'. Currently includes in-kind services, outreach/cm assessments, and topics of cm sessions.
+        Returns a Frankensteined table of other forms of 'detail-level services'. 
+        Currently includes in-kind services, outreach/cm assessments, and topics of cm sessions.
         
         Example:
             Get a table of non-linkages services IDHS clients were connected to::
@@ -2498,6 +2683,7 @@ class IDHS(Queries):
                 e.idhs_linkages_detailed()
         '''
         def in_kind_services():
+            ### FIX FIX FIX
             query = f'''
             select concat('Received ', service_type) detail_service_type, 
             count(distinct case when new_client = 'new' then participant_id else null end) as new,
@@ -2624,8 +2810,165 @@ class IDHS(Queries):
             group by how_hear'''
         df = self.query_run(query)
         return df
+
+    def idhs_r_schooling_gender(self):
+        '''
+        Returns client gender counts broken out by schooling status
+
+        Example:
+            Get client genders/school statuses for IDHS - R::
+
+                e.idhs_r_schooling_gender()
+        
+        '''
+
+        query = f'''
+        with edu as (
+        select distinct(participant_id), linkage_org from neon.linkages
+        where linkage_type like "education%" and start_date is not null and end_status is null
+        and (end_date is null or end_date > {self.q_t2}))
+        
+        select gender, count(distinct case when linkage_org is not null then participant_id else null end) in_school,
+        count(distinct case when linkage_org is null then participant_id else null end) other
+        from participants.idhs_r
+        left join edu using(participant_id)
+        where new_client = 'new'
+        group by gender
+        '''
+
+        df = self.query_run(query)
+        return df
+
+    def idhs_r_age_gender(self):
+        '''
+        Returns client gender counts broken out by age range
+
+        Example:
+            Get client genders/ages for IDHS - R::
+
+                e.idhs_r_age_gender()
+        '''
+
+        query = f'''
+                select '13 and Under' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as male,
+                count(distinct case when gender = 'female' then participant_id else null end) as female,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as other,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) < 14 and new_client = 'new'
+                UNION ALL
+                select '14-15' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 14 AND 15 and new_client = 'new'
+                UNION ALL
+                select '16-17' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 16 AND 17 and new_client = 'new'
+                UNION ALL
+                select '18-20' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 18 AND 20 and new_client = 'new'
+                UNION ALL
+                select '21-24' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 21 AND 24 and new_client = 'new'
+                UNION ALL
+                select '25+' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where TIMESTAMPDIFF(YEAR, birth_date, grant_start) > 24 and new_client = 'new'
+                UNION ALL 
+                select 'MISSING' as age_range, count(distinct case when gender = 'male' then participant_id else null end) as new,
+                count(distinct case when gender = 'female' then participant_id else null end) as continuing,
+                count(distinct case when gender not regexp "female|male" then participant_id else null end) as othr,
+                count(distinct case when gender is null then participant_id else null end) as missing
+                from {self.table}
+                where birth_date is null and new_client = 'new'
+        '''
+        
+        df = self.query_run(query)
+        return df
+
     
+    def r3_ages(self):
+        '''
+        Returns client ages for groups 6-11, 12-14, 15-17, 18-25, 26+
+        '''
 
+        query = f'''
+        select '6-11' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 11 AND 13
+        UNION ALL
+        select '12-14' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 12 AND 14
+        UNION ALL
+        select '15-17' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 15 AND 17
+        UNION ALL
+        select '18-25' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 18 AND 25
+        UNION ALL
+        select '26+' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) > 25
+        UNION ALL 
+        select 'MISSING' as age_range, count(distinct case when new_client = 'new' then participant_id else null end) as new,
+        count(distinct case when new_client = 'continuing' then participant_id else null end) as continuing
+        from {self.table}
+        where birth_date is null
+        '''
 
-    
+        df = self.query_run(query)
+        return df
+ 
 
+    def ryds_ages(self):
+        '''
+        Returns client ages for groups 0-11, 11-13, 14-17, 18-21, 22+
+        '''
+
+        query = f'''
+        select '0-10' as age_group, count(distinct participant_id) count from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 0 AND 10 and new_client = 'new'
+        union all
+        select '11-13' as age_group, count(distinct participant_id) count from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 11 AND 13 and new_client = 'new'
+        union all
+        select '14-17' as age_group, count(distinct participant_id) count from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 14 AND 17 and new_client = 'new'
+        union all
+        select '18-21' as age_group, count(distinct participant_id) count from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) BETWEEN 18 AND 21 and new_client = 'new'
+        union all
+        select '22+' as age_group, count(distinct participant_id) count from {self.table}
+        where TIMESTAMPDIFF(YEAR, birth_date, grant_start) >21 and new_client = 'new'
+        union all
+        select 'MISSING' as age_group, count(distinct participant_id) count from {self.table}
+        where birth_date is null and new_client = 'new'
+        '''
+
+        df = self.query_run(query)
+        return df
