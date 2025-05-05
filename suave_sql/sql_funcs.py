@@ -112,7 +112,7 @@ left join gran using(service_id));
 
 drop table if exists stints.neon;
 create table stints.neon as(
-select first_name, last_name, participant_id, program_type, program_start, program_end, service_id,
+select first_name, last_name, participant_id, program_type, program_start, program_end, 
 service_type, service_start, service_end, 
 case when (grant_start is null or grant_start <= {self.q_t2}) and (grant_end is null or grant_end >= {self.q_t1}) then grant_type else null end as grant_type,
 case when (grant_start is null or grant_start <= {self.q_t2}) and (grant_end is null or grant_end >= {self.q_t1}) then grant_start else null end as grant_start,
