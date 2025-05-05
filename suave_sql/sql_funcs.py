@@ -433,79 +433,80 @@ ORDER BY participant_id, stint_start);
         return result_dict
     
     def table_update(self, desired_table, update_default_table = False):
-        statements = None
-        desired_table = desired_table.lower()
-        if desired_table == 'rjcc':
-            new_table = 'stints.rjcc'
-            statements = f'''
-            drop table if exists {new_table};
-            create table {new_table} as(
-            with mc as (
-            select participant_id, mycase_id, mycase_name from mycase.case_stages
-            where stage like "rjcc" and (stage_end is null or stage_end between {self.q_t1} and {self.q_t2}) and stage_start < {self.q_t2}),
-            mcc as (select distinct mycase_id from mc
-            join neon.legal_mycase using(participant_id, mycase_id, mycase_name)),
-
-            mcunion as (
-            select distinct mycase_id from (
-            select distinct mycase_id from neon.legal_mycase
-            where case_outcome like "%diverted%" or case_status like "%divers%"
-            union all 
-            select * from mcc) s),
-
-            mccases as(
-            select * from mcunion
-            join neon.legal_mycase using(mycase_id)),
-            mcparts as(
-            select distinct(participant_id) from mccases)
-
-            select * from mcparts
-            join (select * from stints.neon
-            join (select participant_id, count(distinct program_type) program_count
-            from stints.neon
-            group by participant_id) pc using(participant_id)) s using(participant_id)
-            where program_type = 'rjcc' or program_count = 1);
-            '''
-        else:
-            grant_dict = {'idhs': 'IDHS VP',
-                        'idhs_r':'IDHS - R',
-                        'cvi': 'ICJIA - CVI',
-                        'r3': 'ICJIA - R3',
-                        'scan':'DFSS - SCAN',
-                        'ryds': 'IDHS - RYDS'}
-            if desired_table in grant_dict: 
-                grant_type = f"'{grant_dict[desired_table]}'"
-                new_table = f'participants.{desired_table}'
+        if isinstance(desired_table, str):
+            statements = None
+            desired_table = desired_table.lower()
+            if desired_table == 'rjcc':
+                new_table = 'stints.rjcc'
                 statements = f'''
                 drop table if exists {new_table};
                 create table {new_table} as(
-                with idhs as (select *, case when (grant_start between {self.q_t1} and {self.q_t2}) then 'new' else 'continuing' end as new_client,
-                case when program_end between {self.q_t1} and {self.q_t2} then 'program'
-                when service_end between {self.q_t1} and {self.q_t2} or grant_end between {self.q_t1} and {self.q_t2} then 'service'
-                else null end as discharged_client
+                with mc as (
+                select participant_id, mycase_id, mycase_name from mycase.case_stages
+                where stage like "rjcc" and (stage_end is null or stage_end between {self.q_t1} and {self.q_t2}) and stage_start < {self.q_t2}),
+                mcc as (select distinct mycase_id from mc
+                join neon.legal_mycase using(participant_id, mycase_id, mycase_name)),
+
+                mcunion as (
+                select distinct mycase_id from (
+                select distinct mycase_id from neon.legal_mycase
+                where case_outcome like "%diverted%" or case_status like "%divers%"
+                union all 
+                select * from mcc) s),
+
+                mccases as(
+                select * from mcunion
+                join neon.legal_mycase using(mycase_id)),
+                mcparts as(
+                select distinct(participant_id) from mccases)
+
+                select * from mcparts
+                join (select * from stints.neon
+                join (select participant_id, count(distinct program_type) program_count
                 from stints.neon
-                where grant_type = {grant_type}),
-
-                discharged_prog as (select participant_id, service_count from (
-                select participant_id, count(participant_id) as service_count, count(case when discharged_client is not null then participant_id else null end) as discharge_ct from idhs
-                group by participant_id) s
-                where service_count = discharge_ct)
-
-                select participant_id, first_name, last_name, program_type, program_start, program_end, service_type, service_start, service_end, grant_type, grant_start, grant_end,
-                gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys, new_client, 
-                case when discharged_client = 'service' and service_count is not null then 'program' else discharged_client end as discharged_client from idhs
-                left join discharged_prog using(participant_id))
+                group by participant_id) pc using(participant_id)) s using(participant_id)
+                where program_type = 'rjcc' or program_count = 1);
                 '''
-            
+            else:
+                grant_dict = {'idhs': 'IDHS VP',
+                            'idhs_r':'IDHS - R',
+                            'cvi': 'ICJIA - CVI',
+                            'r3': 'ICJIA - R3',
+                            'scan':'DFSS - SCAN',
+                            'ryds': 'IDHS - RYDS'}
+                if desired_table in grant_dict: 
+                    grant_type = f"'{grant_dict[desired_table]}'"
+                    new_table = f'participants.{desired_table}'
+                    statements = f'''
+                    drop table if exists {new_table};
+                    create table {new_table} as(
+                    with idhs as (select *, case when (grant_start between {self.q_t1} and {self.q_t2}) then 'new' else 'continuing' end as new_client,
+                    case when program_end between {self.q_t1} and {self.q_t2} then 'program'
+                    when service_end between {self.q_t1} and {self.q_t2} or grant_end between {self.q_t1} and {self.q_t2} then 'service'
+                    else null end as discharged_client
+                    from stints.neon
+                    where grant_type = {grant_type}),
 
-        if statements:
-            for statement in statements.split(';'):
-                if statement.strip():
-                    self.con.execute(text(statement.strip() + ';'))
-        if not statements:
-            new_table = desired_table
-        if update_default_table is True:
-            self.table = new_table
+                    discharged_prog as (select participant_id, service_count from (
+                    select participant_id, count(participant_id) as service_count, count(case when discharged_client is not null then participant_id else null end) as discharge_ct from idhs
+                    group by participant_id) s
+                    where service_count = discharge_ct)
+
+                    select participant_id, first_name, last_name, program_type, program_start, program_end, service_type, service_start, service_end, grant_type, grant_start, grant_end,
+                    gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys, new_client, 
+                    case when discharged_client = 'service' and service_count is not null then 'program' else discharged_client end as discharged_client from idhs
+                    left join discharged_prog using(participant_id))
+                    '''
+                
+
+            if statements:
+                for statement in statements.split(';'):
+                    if statement.strip():
+                        self.con.execute(text(statement.strip() + ';'))
+            if not statements:
+                new_table = desired_table
+            if update_default_table is True:
+                self.table = new_table
 
 
 class Audits(Tables):
