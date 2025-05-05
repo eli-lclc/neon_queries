@@ -105,7 +105,7 @@ with prog as (select participant_id, program_id, program_type, program_status, p
 serv as (select program_id, service_type, service_status, service_start, service_end, service_id from neon.services),
 gran as (select service_id, grant_type, grant_start, grant_end from neon.psg
 join (select service_id, grant_id as grant_id from neon.psg) serv using(service_id, grant_id))
-select participant_id, program_type, program_start, program_end, service_id, service_type, service_start, service_end, grant_type, grant_start, grant_end 
+select participant_id, program_type, program_id, program_start, program_end, service_id, service_type, service_start, service_end, grant_type, grant_start, grant_end 
 from prog
 left join serv using(program_id)
 left join gran using(service_id));
@@ -117,7 +117,7 @@ service_type, service_start, service_end,
 case when (grant_start is null or grant_start <= {self.q_t2}) and (grant_end is null or grant_end >= {self.q_t1}) then grant_type else null end as grant_type,
 case when (grant_start is null or grant_start <= {self.q_t2}) and (grant_end is null or grant_end >= {self.q_t1}) then grant_start else null end as grant_start,
 case when (grant_start is null or grant_start <= {self.q_t2}) and (grant_end is null or grant_end >= {self.q_t1}) then grant_end else null end as grant_end,
-gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys from neon.big_psg
+gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys,program_id, service_id from neon.big_psg
 join neon.basic_info using(participant_id)
 where ((program_start is null or program_start <= {self.q_t2}) and (program_end is null or program_end >= {self.q_t1})) and 
 (service_start is null or service_start <= {self.q_t2}) and (service_end is null or service_end >= {self.q_t1}));
@@ -313,6 +313,7 @@ create table stints.stint_count as(
 WITH date_groups AS (
     SELECT 
         participant_id,
+        program_id,
         program_start,
         program_end,
         CASE 
@@ -2409,7 +2410,8 @@ class Grants(Queries):
         grant_types: 'idhs', 'idhs_r', 'r3', 'scan', 'ryds'
         '''
         super().__init__(t1, t2, engine, print_SQL, clipboard, default_table, mycase)
-        self.table_update(grant_type, update_default_table = True)
+        if isinstance(grant_type,str):
+            self.table_update(grant_type, update_default_table = True)
 
     def cvi_demographics(self):
         query = f'''with ages as(
