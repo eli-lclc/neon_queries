@@ -878,6 +878,7 @@ class Queries(Audits):
         df = df.set_index('domain').T
         print(df)
         df['crisis_percentage'] = df['crisis_scores']/df['total_participants']
+        df['crisis_percentage'] = df['crisis_percentage'].apply(lambda x: "{:.2f}%".format(x * 100))
         df = df.reset_index().sort_values(by=['crisis_percentage'], ascending=False)
         return(df)
     
