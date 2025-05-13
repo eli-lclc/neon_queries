@@ -1112,7 +1112,7 @@ class Queries(Audits):
         df = self.query_run(query)
         return(df)
     
-    def assess_inventory_categories(self, timeframe = True, distinct_clients = False):
+    def assess_risk_factor_assessments(self, timeframe = True, distinct_clients = False):
         '''
         Counts # of risk factor, protective, and strength-based inventories for clients.
 
@@ -1225,54 +1225,42 @@ class Queries(Audits):
 
                 e.dem_address(new_clients=True, group_by='zip')
         '''
-        if new_clients == False: 
-            query = f'''
+        new_client_statement = f'where program_start between {self.q_t1} and {self.q_t2}' if new_clients else ''
+        query = f'''
             with ranked_addresses as (select *,
             ROW_NUMBER() OVER (partition by participant_id ORDER BY primary_address DESC, address_id DESC, civicore_address_id asc) AS rn
             from neon.address
-            join (select distinct participant_id, first_name, last_name from {self.table}) sn using(participant_id)),
+            join (select distinct participant_id, first_name, last_name from {self.table} {new_client_statement}) sn using(participant_id)),
             address_table as(
             select participant_id, first_name, last_name, address1, address2, city, state, zip, primary_address, community
             from ranked_addresses
             where rn = 1)
             '''
-        if new_clients == True: 
-            query = f'''
-            with ranked_addresses as (select *,
-            ROW_NUMBER() OVER (partition by participant_id ORDER BY primary_address DESC, address_id DESC, civicore_address_id asc) AS rn
-            from neon.address
-            join (select distinct participant_id, first_name, last_name from {self.table}
-            where program_start between {self.q_t1} and {self.q_t2}) sn using(participant_id)),
-            address_table as(
-            select participant_id, first_name, last_name, address1, address2, city, state, zip, primary_address, community
-            from ranked_addresses
-            where rn = 1)
-            '''
-
-        if group_by == None:
+        if not group_by:
             modifier = f'''select * from address_table'''
-        if group_by == 'region':
-            modifier = f'''
-                        ,
-                        region_table as(
-            select participant_id, case when community not regexp ".*garfield park|little village|north lawndale|austin" then region else community end as community
-            from address_table
-            join misc.chicago_regions using(community))
-            
-            select community, count(distinct participant_id) count
-            from region_table
-            group by community
-            ORDER BY 
-				CASE 
-					WHEN community IN ('North Lawndale', 'Austin', 'Little Village', 'East Garfield Park', 'West Garfield Park') THEN 0
-					WHEN community = 'Other_Chicago' THEN 2
-					ELSE 1
-				END,
-				community ASC;
-            '''
         else:
-            modifier = f'''select {group_by}, count(distinct participant_id) as count from address_table
-            group by {group_by}'''
+            if group_by == 'region':
+                modifier = f'''
+                            ,
+                            region_table as(
+                select participant_id, case when community not regexp ".*garfield park|little village|north lawndale|austin" then region else community end as community
+                from address_table
+                join misc.chicago_regions using(community))
+                
+                select community, count(distinct participant_id) count
+                from region_table
+                group by community
+                ORDER BY 
+                    CASE 
+                        WHEN community IN ('North Lawndale', 'Austin', 'Little Village', 'East Garfield Park', 'West Garfield Park') THEN 0
+                        WHEN community = 'Other_Chicago' THEN 2
+                        ELSE 1
+                    END,
+                    community ASC;
+                '''
+            else:
+                modifier = f'''select {group_by}, count(distinct participant_id) as count from address_table
+                group by {group_by}'''
         query = self.query_modify(str(query), modifier)
         df = self.query_run(query)
         return(df)
@@ -1757,7 +1745,7 @@ class Queries(Audits):
             count_str = 'count(distinct mycase_id) as count'
 
 
-        if grouping_cols is None or (isinstance(grouping_cols, list) and not grouping_cols):
+        if not grouping_cols:
             actual_query = f'''
             
             select * from {table_name}'''
