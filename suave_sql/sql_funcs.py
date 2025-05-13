@@ -2151,7 +2151,7 @@ join (SELECT participant_id, max(stint_num) stint_num FROM stints.stints_plus_st
     def mediation_tally(self,timeframe=True):
         ''''''
         timeframe_statement = f"""where mediation_start between{self.q_t1} and {self.q_t2}""" 
-        query = f'''select mediation_outcome, count(mediation_id)
+        query = f'''select mediation_outcome, count(mediation_id) count
         from neon.mediations 
         {timeframe_statement} 
         group by mediation_outcome
