@@ -1435,9 +1435,9 @@ class Queries(Audits):
             end as 'prog_status'
             from status_counter)
             
-            select 'TOTAL' as 'status', count(distinct participant_id) cnt from {self.table}
+            select 'TOTAL' as 'status', count(distinct participant_id) count from {self.table}
             union all
-            (select prog_status, count(distinct participant_id) cnt from client_statuses
+            (select prog_status, count(distinct participant_id) count from client_statuses
             group by prog_status)
             union all
             select concat('Close Reason: ', close_reason), count(distinct participant_id) reason_count from client_statuses
@@ -1634,7 +1634,7 @@ class Queries(Audits):
             from (select participant_id, goals_completed/total_goals as percent_goals_completed
             from discharged_isps) i)
             
-            select percent_group percent_complete, count(distinct participant_id) as participants from percent_groups
+            select percent_group percent_complete, count(distinct participant_id) as count from percent_groups
             group by percent_group
             order by case 
             when percent_group = '100%' then 1
@@ -2032,12 +2032,14 @@ class Queries(Audits):
         select * from base
         left join link_tally using(participant_id))
 
-        select *, linked_clients/total_clients linked_pct from
+        select *, linked_clients/total_clients linked_percentage from
         (select newness, custody_status, count(distinct participant_id) total_clients, 
         count(distinct case when link_count is not null then participant_id end) linked_clients from link_base
         group by newness, custody_status) s'''
 
         df = self.query_run(query)
+        df = df.reset_index().sort_values(by=['linked_percentage'], ascending=False)
+        df['linked_percentage'] = df['linked_percentage'].apply(lambda x: "{:.2f}%".format(x * 100))
         return(df)
 
     @clipboard_decorator
@@ -2233,7 +2235,7 @@ join (SELECT participant_id, max(stint_num) stint_num FROM stints.stints_plus_st
         from (select participant_id, case_length, session_count, case_length/session_count as session_frequency from datez
         left join sess_counts using(participant_id)) d)
 
-        select session_rate, count(participant_id) as cnt
+        select session_rate, count(participant_id) as count
         from freq
         group by session_rate
         order by case when session_rate = 'weekly' then 1
@@ -2697,7 +2699,7 @@ select * from ages'''
             where latest_update between {self.q_t1} and {self.q_t2}) isp),
 
             cm_assess as(
-            select 'Got a cm assessment' cnt, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
+            select 'Got a cm assessment' count, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
             count(distinct case when new_client = 'continuing' then participant_id else null end) as cont_assess
             from(
             select participant_id, new_client, count(score) as num_cm_assess from assess.cm_long
@@ -2705,12 +2707,12 @@ select * from ages'''
             where assessment_date between {self.q_t1} and {self.q_t2}
             group by participant_id, new_client) i),
 
-            ow_elig as (select 'OW elig screening' cnt, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
+            ow_elig as (select 'OW elig screening' count, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
             count(distinct case when new_client = 'continuing' then participant_id else null end) as cont_assess from (select * from assess.outreach_eligibility
             right join part using(participant_id)
             where assessment_date between {self.q_t1} and {self.q_t2})o),
 
-            ow_assess as (select 'Got an ow assessment' cnt, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
+            ow_assess as (select 'Got an ow assessment' count, count(distinct case when new_client = 'new' then participant_id else null end) as new_assess,
             count(distinct case when new_client = 'continuing' then participant_id else null end) as cont_assess from (select * from assess.outreach_tracker
             right join part using(participant_id)
             where (latest_assessment between {self.q_t1} and {self.q_t2}) or (latest_intervention between {self.q_t1} and {self.q_t2})) o),
