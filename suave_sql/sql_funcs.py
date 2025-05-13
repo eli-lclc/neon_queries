@@ -1192,7 +1192,7 @@ class Queries(Audits):
         left join cust using(participant_id))
         '''
         if summary_table:
-            addendum = f'''select custody_status, count(distinct participant_id) as num_clients
+            addendum = f'''select custody_status, count(distinct participant_id) as count
                             from cust_table
                             group by custody_status'''
         else:
@@ -2799,7 +2799,7 @@ select * from ages'''
             where how_hear regexp '.*cpic.*' and incident_date between {self.q_t1} and {self.q_t2}
             group by type_incident'''
         else:
-            query = f'''select how_hear, count(incident_id) from neon.critical_incidents
+            query = f'''select how_hear, count(incident_id) count from neon.critical_incidents
             where incident_date between {self.q_t1} and {self.q_t2} and how_hear not regexp '.*cpic.*'
             group by how_hear'''
         df = self.query_run(query)
