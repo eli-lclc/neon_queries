@@ -2038,8 +2038,7 @@ class Queries(Audits):
         group by newness, custody_status) s'''
 
         df = self.query_run(query)
-        df = df.set_index('linked_percentage')
-        df = df.reset_index().sort_values(by=['linked_percentage'], ascending=False)
+        df = df.reset_index(drop=True).sort_values(by=['linked_percentage'], ascending=False)
         df['linked_percentage'] = df['linked_percentage'].apply(lambda x: "{:.2f}%".format(x * 100))
         return(df)
 
