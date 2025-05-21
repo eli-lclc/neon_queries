@@ -126,6 +126,11 @@ drop table if exists stints.neon_chd;
 create table stints.neon_chd as(select * from stints.neon
 where program_type regexp 'chd|community navigation|violence prevention');
 
+drop table if exists stints.active;
+create table stints.active as (
+select * from neon.big_psg
+where program_end is null and service_end is null and grant_end is null);
+
 drop table if exists neon.client_teams;
 create table neon.client_teams as
 with active_services as(
@@ -518,9 +523,6 @@ class Audits(Tables):
     def program_lacks_services(self):
         '''
         Returns a table of active programs with no corresponding services.
-
-        Note:
-            Audit - Program Missing Services
         '''
         query = f'''
         with psg_table as (
@@ -538,9 +540,6 @@ class Audits(Tables):
     def service_lacks_grant(self):
         '''
         Returns a table of active services without a corresponding grant.
-
-        Note:
-            Audit - Service Missing Grant
         '''
         query = f'''with psg_table as (
         select * from (select first_name, last_name, participant_id from neon.basic_info) i
@@ -559,9 +558,6 @@ class Audits(Tables):
 
         Parameters:
             active_only (Bool): only looks at clients with active programs/services
-
-        Note:
-            Audit - Service Missing Assigned Staff
         '''
 
         if active_only:
@@ -588,9 +584,6 @@ class Audits(Tables):
     def staff_lacks_service(self):
         '''
         Returns a table of staff members assigned to clients without a corresponding service type
-        
-        Note:
-            Audit - Active Staff for Closed Service
         '''
 
         query = f'''with serv as (
@@ -621,10 +614,6 @@ class Audits(Tables):
         return(df)
 
     def legal_audit_lawyers(self, func_dict = None):
-        '''
-        Note:
-            Audit - Legal Items
-        '''
         def caseid_NAN(active_only = True, new_cases = False):
             active_only = f"and participant_id in (select distinct participant_id from {self.table} where service_type = 'legal' and program_end is null and service_end is null)" if active_only else ''
             new_cases = f'and case_start between {self.q_t1} and {self.q_t2}' if new_cases else f'and ((case_outcome_date is null and (case_end is null or case_end > {self.q_t1})) or case_outcome_date between {self.q_t1} and {self.q_t2})'
