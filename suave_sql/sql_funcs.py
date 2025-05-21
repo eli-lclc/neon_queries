@@ -128,7 +128,11 @@ where program_type regexp 'chd|community navigation|violence prevention');
 
 drop table if exists stints.active;
 create table stints.active as (
-select * from neon.big_psg
+select first_name, last_name, participant_id, program_type, program_start, program_end, 
+service_type, service_start, service_end, grant_type, grant_start, grant_end,
+gender, race, age, birth_date, language_primary, case_managers, outreach_workers, attorneys,program_id, service_id
+from neon.big_psg
+join neon.basic_info using(participant_id)
 where program_end is null and service_end is null and grant_end is null);
 
 drop table if exists neon.client_teams;
