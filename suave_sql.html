@@ -1,0 +1,1537 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sql_funcs documentation &#8212; suave_sql 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'suave_sql';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sql_funcs reference table" href="examples_table.html" />
+    <link rel="prev" title="neon_queries documentation" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">sql_funcs documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_table.html">sql_funcs reference table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting_funcs.html">reporting_funcs documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html">report examples</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/suave_sql.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>sql_funcs documentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-functions">General Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries"><code class="docutils literal notranslate"><span class="pre">Queries</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_assm"><code class="docutils literal notranslate"><span class="pre">assess_assm()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_assm_improvement"><code class="docutils literal notranslate"><span class="pre">assess_assm_improvement()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_missing_outreach"><code class="docutils literal notranslate"><span class="pre">assess_missing_outreach()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_score_change"><code class="docutils literal notranslate"><span class="pre">assess_score_change()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_risk_factor_assessments"><code class="docutils literal notranslate"><span class="pre">assess_risk_factor_assessments()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.custody_status"><code class="docutils literal notranslate"><span class="pre">custody_status()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_address"><code class="docutils literal notranslate"><span class="pre">dem_address()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_age"><code class="docutils literal notranslate"><span class="pre">dem_age()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_race_gender"><code class="docutils literal notranslate"><span class="pre">dem_race_gender()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment"><code class="docutils literal notranslate"><span class="pre">enrollment()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment_bundles"><code class="docutils literal notranslate"><span class="pre">enrollment_bundles()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment_flow"><code class="docutils literal notranslate"><span class="pre">enrollment_flow()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.incident_tally"><code class="docutils literal notranslate"><span class="pre">incident_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.incident_response"><code class="docutils literal notranslate"><span class="pre">incident_response()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_goal_tracker"><code class="docutils literal notranslate"><span class="pre">isp_goal_tracker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_tracker"><code class="docutils literal notranslate"><span class="pre">isp_tracker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_discharged"><code class="docutils literal notranslate"><span class="pre">isp_discharged()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_bonanza"><code class="docutils literal notranslate"><span class="pre">legal_bonanza()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_rearrested"><code class="docutils literal notranslate"><span class="pre">legal_rearrested()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_rjcc"><code class="docutils literal notranslate"><span class="pre">legal_rjcc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_completed"><code class="docutils literal notranslate"><span class="pre">linkages_edu_completed()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_employ"><code class="docutils literal notranslate"><span class="pre">linkages_edu_employ()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_employ_new"><code class="docutils literal notranslate"><span class="pre">linkages_edu_employ_new()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_monthly"><code class="docutils literal notranslate"><span class="pre">linkages_monthly()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_percent"><code class="docutils literal notranslate"><span class="pre">linkages_percent()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_tally"><code class="docutils literal notranslate"><span class="pre">linkages_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.outreach_elig_tally"><code class="docutils literal notranslate"><span class="pre">outreach_elig_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.mediation_tally"><code class="docutils literal notranslate"><span class="pre">mediation_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.session_tally"><code class="docutils literal notranslate"><span class="pre">session_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.session_frequency"><code class="docutils literal notranslate"><span class="pre">session_frequency()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-sql_funcs">Specific-Use Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits"><code class="docutils literal notranslate"><span class="pre">Audits</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.program_lacks_services"><code class="docutils literal notranslate"><span class="pre">program_lacks_services()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.service_lacks_grant"><code class="docutils literal notranslate"><span class="pre">service_lacks_grant()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.service_lacks_staff"><code class="docutils literal notranslate"><span class="pre">service_lacks_staff()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.staff_lacks_service"><code class="docutils literal notranslate"><span class="pre">staff_lacks_service()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.legal_audit_lawyers"><code class="docutils literal notranslate"><span class="pre">legal_audit_lawyers()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks"><code class="docutils literal notranslate"><span class="pre">ReferralAsks</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.highest_cases"><code class="docutils literal notranslate"><span class="pre">highest_cases()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.cm_closures"><code class="docutils literal notranslate"><span class="pre">cm_closures()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.cpic_summary"><code class="docutils literal notranslate"><span class="pre">cpic_summary()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.missing_isp"><code class="docutils literal notranslate"><span class="pre">missing_isp()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.last_30_days"><code class="docutils literal notranslate"><span class="pre">last_30_days()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables"><code class="docutils literal notranslate"><span class="pre">Tables</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.query_run"><code class="docutils literal notranslate"><span class="pre">query_run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.query_modify"><code class="docutils literal notranslate"><span class="pre">query_modify()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.stints_run"><code class="docutils literal notranslate"><span class="pre">stints_run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.run_report"><code class="docutils literal notranslate"><span class="pre">run_report()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.table_update"><code class="docutils literal notranslate"><span class="pre">table_update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="sql-funcs-documentation">
+<h1>sql_funcs documentation<a class="headerlink" href="#sql-funcs-documentation" title="Link to this heading">#</a></h1>
+<section id="general-functions">
+<h2>General Functions<a class="headerlink" href="#general-functions" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sql_funcs.Queries">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_funcs.</span></span><span class="sig-name descname"><span class="pre">Queries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sql_funcs.Audits" title="sql_funcs.Audits"><code class="xref py py-class docutils literal notranslate"><span class="pre">Audits</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.__init__" title="Link to this definition">#</a></dt>
+<dd><p>establishes settings and runs stints for the desired time period</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t1</strong> – start date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>t2</strong> – end date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>print_sql</strong> (<em>Bool</em>) – whether to print the SQL statements when run, defaults to True</p></li>
+<li><p><strong>clipboard</strong> (<em>Bool</em>) – whether to copy the output table to your clipboard, defaults to False</p></li>
+<li><p><strong>default_table</strong> – the source table to run queries on. defaults to “stints.neon”, can also use “stints.neon_chd”, or a participants table</p></li>
+<li><p><strong>mycase</strong> (<em>Bool</em>) – whether the user has a formatted MyCase SQL database, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Set up a table of all clients in Neon in 2024</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set up a table of CHD clients in Q3 of 2024:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span><span class="o">=</span> <span class="s1">&#39;2024-07-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span> <span class="s1">&#39;2024-09-30&#39;</span><span class="p">,</span> <span class="n">default_table</span> <span class="o">=</span> <span class="n">stints</span><span class="o">.</span><span class="n">neon_chd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.assess_assm">
+<span class="sig-name descname"><span class="pre">assess_assm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cutoff_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'min'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.assess_assm" title="Link to this definition">#</a></dt>
+<dd><p>Counts clients with ASSM scores in a certain range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cutoff_score</strong> – the upper bound of score to include. Defaults to 2</p></li>
+<li><p><strong>score_date</strong> (<em>str</em>) – ‘min’ returns the earliest score, ‘max’ returns the latest. Defaults to ‘min’</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a count of clients with their earliest ASSM scores between 1-2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_assm</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get a count of clients with their latest ASSM scores between 1-3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_assm</span><span class="p">(</span><span class="n">cutoff_score</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">score_date</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ASSM Scores by Category</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.assess_assm_improvement">
+<span class="sig-name descname"><span class="pre">assess_assm_improvement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isp_goals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.assess_assm_improvement" title="Link to this definition">#</a></dt>
+<dd><p>Returns the number of clients with ASSM improvements in each category</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – whether to only look at ASSM scores in the timeframe (and a client’s original). Defaults to False</p></li>
+<li><p><strong>isp_goals</strong> (<em>Bool</em>) – Only look at score improvements for ISP goal domains. Defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Get a breakdown of ASSM score improvements in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_assm_improvement</span><span class="p">(</span><span class="n">timeframe</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients whose ASSM increased in an ISP goal area:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assm_improvement</span><span class="p">(</span><span class="n">isp_goals</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ASSM Score Changes</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.assess_missing_outreach">
+<span class="sig-name descname"><span class="pre">assess_missing_outreach</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.assess_missing_outreach" title="Link to this definition">#</a></dt>
+<dd><p>Returns a list of outreach clients missing assessments</p>
+<p class="rubric">Example</p>
+<p>Get clients missing outreach assessments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_missing_outreach</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Outreach Clients Missing Assessments</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.assess_score_change">
+<span class="sig-name descname"><span class="pre">assess_score_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.assess_score_change" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of CM assessments &amp; their score changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – only looks at score changes in the timeframe. Defaults to True</p></li>
+<li><p><strong>min_score</strong> – the lowest pre-assessment score to consider. Defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get count of assessment score changes within timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_score_change</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get all-time count of assessment score changes for initial scores of 32+:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">assess_score_change</span><span class="p">(</span><span class="n">timeframe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_score</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Case Management Assessment Score Changes</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.assess_risk_factor_assessments">
+<span class="sig-name descname"><span class="pre">assess_risk_factor_assessments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distinct_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.assess_risk_factor_assessments" title="Link to this definition">#</a></dt>
+<dd><p>Counts # of risk factor, protective, and strength-based inventories for clients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – Whether to only count assessments in timeframe. Defaults to True</p></li>
+<li><p><strong>distinct_clients</strong> (<em>Bool</em>) – Whether to count multiple assessments per client. Defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assessment Count by Inventory Type (protective, risk-factor, strength-based)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.custody_status">
+<span class="sig-name descname"><span class="pre">custody_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">summary_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.custody_status" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of clients’ most recent custody statuses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>summary_table</strong> (<em>Bool</em>) – groups clients by latest custody status. Defaults to False</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a record of each clients’ latest custody status:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">custody_status</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number of clients with each custody status:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">custody_status</span><span class="p">(</span><span class="n">summary_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Custody Statuses (Individual or Grouped)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.dem_address">
+<span class="sig-name descname"><span class="pre">dem_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.dem_address" title="Link to this definition">#</a></dt>
+<dd><p>returns client address records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_clients</strong> (<em>bool</em>) – include only new clients. Defaults to False</p></li>
+<li><p><strong>group_by</strong> – group client records, takes ‘zip’, ‘community’, ‘region’. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a table of each client’s address:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_address</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get a count of the number of client’s in each neighborhood:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_address</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;community&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get a count of the number of new clients in each zipcode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_address</span><span class="p">(</span><span class="n">new_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;zip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Client Addresses</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.dem_age">
+<span class="sig-name descname"><span class="pre">dem_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.dem_age" title="Link to this definition">#</a></dt>
+<dd><p>Returns a count of clients below/above a certain age threshold, or identifies clients as juveniles/adults</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_clients</strong> (<em>Bool</em>) – if true, only counts clients who began between t1 and t2. defaults to False</p></li>
+<li><p><strong>tally</strong> (<em>Bool</em>) – if true, returns a count of juv/adults, if false, returns a list. defaults to True</p></li>
+<li><p><strong>age</strong> – threshold at which a client is counted as a juvenile. defaults to 18</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number of clients currently under 19:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_age</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of new clients under 18:</p>
+<blockquote>
+<div><p>e.dem_age(new_clients=True)</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Client Ages</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.dem_race_gender">
+<span class="sig-name descname"><span class="pre">dem_race_gender</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">race_gender</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'race'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.dem_race_gender" title="Link to this definition">#</a></dt>
+<dd><p>Returns a count of client races or genders</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_clients</strong> (<em>Bool</em>) – if true, only counts clients who began between t1 and t2. defaults to False</p></li>
+<li><p><strong>race_gender</strong> – the category to tally, enter either “race” or “gender”. defaults to ‘race’</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the genders of new clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_race_gender</span><span class="p">(</span><span class="n">new_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">race_gender</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get client races:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">dem_race_gender</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Client Races or Genders</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.enrollment">
+<span class="sig-name descname"><span class="pre">enrollment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grant_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.enrollment" title="Link to this definition">#</a></dt>
+<dd><p>Returns a count of clients, with options to break down by program, service, and/or grant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>program_type</strong> (<em>Bool</em>) – distinguish by program, defaults to False</p></li>
+<li><p><strong>service_type</strong> (<em>Bool</em>) – distinguish by service, defaults to False</p></li>
+<li><p><strong>grant_type</strong> (<em>Bool</em>) – distinguish by grant, defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the total number of clients enrolled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number of clients enrolled in each program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment</span><span class="p">(</span><span class="n">program_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients receiving each service for every program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment</span><span class="p">(</span><span class="n">program_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">service_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients receiving each service on a grant:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment</span><span class="p">(</span><span class="n">service_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grant_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Total Clients Enrolled (overall or by program/service/grant)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.enrollment_bundles">
+<span class="sig-name descname"><span class="pre">enrollment_bundles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.enrollment_bundles" title="Link to this definition">#</a></dt>
+<dd><p>Counts clients by their bundle of programs</p>
+<p class="rubric">Example</p>
+<p>Get the number of clients enrolled in each combination of programs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment_bundles</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Client Program Combinations</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.enrollment_flow">
+<span class="sig-name descname"><span class="pre">enrollment_flow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.enrollment_flow" title="Link to this definition">#</a></dt>
+<dd><p>Counts the flow of clients in and out of LCLC in the timeframe.</p>
+<p class="rubric">Example</p>
+<p>Get the number of clients enrolled/unenrolled in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">enrollment_flow</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enrollment Status Changes</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.incident_tally">
+<span class="sig-name descname"><span class="pre">incident_tally</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.incident_tally" title="Link to this definition">#</a></dt>
+<dd><p>counts incidents in timeframe, distinguishing between CPIC and non-CPIC events.</p>
+<p class="rubric">Example</p>
+<p>Get the number of incidents in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">incident_tally</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Critical Incident Count</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.incident_response">
+<span class="sig-name descname"><span class="pre">incident_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.incident_response" title="Link to this definition">#</a></dt>
+<dd><p>counts incidents responded to in timeframe</p>
+<p class="rubric">Example</p>
+<p>Get the number of incident responses in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">incident_response</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Critical Incident Response Count</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.isp_goal_tracker">
+<span class="sig-name descname"><span class="pre">isp_goal_tracker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.isp_goal_tracker" title="Link to this definition">#</a></dt>
+<dd><p>Breaks out client ISP goals by domain and completion</p>
+<p class="rubric">Example</p>
+<p>Get the status of client ISP goals by domain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">isp_goal_tracker</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ISP Completion by Goal Area</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.isp_tracker">
+<span class="sig-name descname"><span class="pre">isp_tracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">just_cm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_days_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.isp_tracker" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of client service plan statuses or a table summarizing overall plan completion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>just_cm</strong> (<em>Bool</em>) – if true, only looks at clients enrolled in case management. Defaults to True</p></li>
+<li><p><strong>summary_table</strong> (<em>Bool</em>) – whether to return a summary table. Defaults to False</p></li>
+<li><p><strong>service_days_cutoff</strong> – the day threshold at which a service plan ought to be complete. Defaults to 45</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a full table of ISP statuses for all clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">isp_tracker</span><span class="p">(</span><span class="n">just_cm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the count of case management clients missing a service plan after 60 days:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">isp_tracker</span><span class="p">(</span><span class="n">summary_table</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">service_days_cutoff</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ISP Status (Individual or Grouped)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.isp_discharged">
+<span class="sig-name descname"><span class="pre">isp_discharged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missing_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.isp_discharged" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of discharged clients’ service plan completion and groups percent of goals completed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>missing_names</strong> (<em>Bool</em>) – whether to return a list of the clients missing an ISP. defaults to False</p>
+</dd>
+</dl>
+<dl>
+<dt>Examples::</dt><dd><p>Get the number of discharged clients broken out by % of their service plan completed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">isp_discharged</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get a list of discharged clients with no ISPs recorded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">isp_discharged</span><span class="p">(</span><span class="n">missing_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ISP Completion for Discharged Clients</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.legal_bonanza">
+<span class="sig-name descname"><span class="pre">legal_bonanza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case_stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ranking_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouping_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wide_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.legal_bonanza" title="Link to this definition">#</a></dt>
+<dd><p>Flexible function designed to return a table of legal data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – Whether to look true only looks at cases active in time period</p></li>
+<li><p><strong>case_stage</strong> (<em>optional</em>) – ‘started’ only looks at cases started in time period, ‘ended’ looks at cases ended</p></li>
+<li><p><strong>method</strong> (<em>ranking</em>) – ‘highest_felony’ looks at a client’s highest pretrial charge, ‘highest_outcome’ looks at a clients highest outcome. Defaults to “None”</p></li>
+<li><p><strong>grouping_cols</strong> (<em>str</em><em>, </em><em>list</em>) – column(s) to use group_by on. The string ‘case_outcomes’ automatically includes case_outcome, sentence, and probation_type</p></li>
+<li><p><strong>wide_col</strong> (<em>optional</em>) – column to [widen data] on.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Hints:</dt><dd><p>group_by column options: case_type, violent, juvenile_adult, class_prior_to_trial_plea, class_after_trial_plea, case_outcome, sentence, probation_type
+wide_col column options: violent, fel_reduction, class_type</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get client outcomes in the time period:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_bonanza</span><span class="p">(</span><span class="n">timeframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ranking_method</span><span class="o">=</span><span class="s1">&#39;highest_outcome&#39;</span><span class="p">,</span> <span class="n">grouping_cols</span><span class="o">=</span><span class="s1">&#39;case_outcomes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get types of cases begun in time period:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_bonanza</span><span class="p">(</span><span class="n">timeframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">case_stage</span> <span class="o">=</span> <span class="s1">&#39;started&#39;</span><span class="p">,</span> <span class="n">grouping_cols</span><span class="o">=</span><span class="s1">&#39;case_type&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get case outcomes grouped by violent status:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_bonanza</span><span class="p">(</span><span class="n">timeframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">case_stage</span><span class="o">=</span><span class="s1">&#39;ended&#39;</span><span class="p">,</span> <span class="n">grouping_cols</span><span class="o">=</span><span class="s1">&#39;case_outcome&#39;</span><span class="p">,</span> <span class="n">wide_col</span><span class="o">=</span><span class="s1">&#39;violent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Legal Information (Flexible)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.legal_rearrested">
+<span class="sig-name descname"><span class="pre">legal_rearrested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.legal_rearrested" title="Link to this definition">#</a></dt>
+<dd><p>Returns a count of clients who picked up new cases cumulatively and in the timeframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_level</strong> (<em>Bool</em>) – True counts the number of clients, False counts the number of total cases. Defaults to True</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number of new cases picked up by clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_rearrested</span><span class="p">(</span><span class="n">client_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients rearrested:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_rearrested</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recidivism</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.legal_rjcc">
+<span class="sig-name descname"><span class="pre">legal_rjcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.legal_rjcc" title="Link to this definition">#</a></dt>
+<dd><p>Returns a count of clients enrolled in RJCC (according to MyCase), and a tally of case outcomes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_level</strong> (<em>Bool</em>) – True counts the number of clients, False counts the number of total cases. Defaults to True</p></li>
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – True only looks at cases in the timeframe. Defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get RJCC cases ended in timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_rjcc</span><span class="p">(</span><span class="n">client_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients who completed RJCC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">legal_rjcc</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>RJCC Enrollment in MyCase</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_edu_completed">
+<span class="sig-name descname"><span class="pre">linkages_edu_completed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_edu_completed" title="Link to this definition">#</a></dt>
+<dd><p>Returns completed education linkages in timeframe</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Completed Education Linkages</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_edu_employ">
+<span class="sig-name descname"><span class="pre">linkages_edu_employ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">just_cm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_n_months</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ongoing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_client_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_wfd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_edu_employ" title="Link to this definition">#</a></dt>
+<dd><p>Counts the number of clients enrolled/employed by age group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>just_cm</strong> (<em>Bool</em>) – Whether to only include clients enrolled in case management. Defaults to True</p></li>
+<li><p><strong>first_n_months</strong> (<em>optional</em><em>, </em><em>int</em>) – Only counts linkages in the first N months of program enrollment, usually 6 or 9. Defaults to None</p></li>
+<li><p><strong>ongoing</strong> (<em>Bool</em>) – Only include linkages with no end date. Defaults to False</p></li>
+<li><p><strong>age_threshold</strong> (<em>int</em>) – inclusive upper bound for ‘school-aged’ clients. Defaults to 18</p></li>
+<li><p><strong>new_client_threshold</strong> (<em>int</em>) – number of days required to be considered “continuing”</p></li>
+<li><p><strong>include_wfd</strong> (<em>Bool</em>) – whether to count workforce development linkages as employment. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number of case management clients enrolled/employed in their first 9 months:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_edu_employ</span><span class="p">(</span><span class="n">first_n_months</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients currently enrolled/employed with an age cutoff of 19:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_edu_employ</span><span class="p">(</span><span class="n">just_cm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ongoing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">age_threshold</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of case management clients enrolled/employed excluding workforce development linkages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_edu_employ</span><span class="p">(</span><span class="n">include_wfd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of case management clients enrolled/employed after nine months:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_edu_employ</span><span class="p">(</span><span class="n">new_client_threshold</span> <span class="o">=</span> <span class="mi">275</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Education and Employment Linkage Table</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_edu_employ_new">
+<span class="sig-name descname"><span class="pre">linkages_edu_employ_new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cm_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_edu_employ_new" title="Link to this definition">#</a></dt>
+<dd><p>Returns new education/employment linkages in timeframe</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New Education and Employment Linkages</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_monthly">
+<span class="sig-name descname"><span class="pre">linkages_monthly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lclc_initiated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">just_cm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_monthly" title="Link to this definition">#</a></dt>
+<dd><p>Counts the number of clients linked in the current time frame, and in their first 3/6/9 months</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lclc_initiated</strong> (<em>Bool</em>) – Only look at linkages that LCLC initiated. Defaults to True</p></li>
+<li><p><strong>just_cm</strong> (<em>Bool</em>) – Only look at clients receiving case management. Defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Examples::</dt><dd><p>Get the number of case management clients with lclc-initiated linkages in the current time period and their first 3/6/9 months:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_monthly</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number of all clients with linkages in the time period:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_monthly</span><span class="p">(</span><span class="n">just_cm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of case management clients with linkages in the time periods, including client-initiated linkages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_monthly</span><span class="p">(</span><span class="n">lclc_initiated</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Number of Clients Linked by Time Period</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_percent">
+<span class="sig-name descname"><span class="pre">linkages_percent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_client_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cm_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_percent" title="Link to this definition">#</a></dt>
+<dd><p>Get percent of clients with linkage, broken out by custody/newness</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – Only include records with a linked_date in the timeframe. Defaults to True</p></li>
+<li><p><strong>new_client_threshold</strong> (<em>int</em>) – number of days required to be considered “continuing”. defaults to 45</p></li>
+<li><p><strong>cm_only</strong> (<em>Bool</em>) – Only count case management clients. Defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Percent of Clients with a Linkage</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.linkages_tally">
+<span class="sig-name descname"><span class="pre">linkages_tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lclc_initiated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">just_cm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distinct_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linkage_type'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_started</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_ongoing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.linkages_tally" title="Link to this definition">#</a></dt>
+<dd><p>Flexible function designed to return linkage information grouped in some way</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lclc_initiated</strong> (<em>Bool</em>) – Only look at linkages that LCLC initiated. Defaults to True</p></li>
+<li><p><strong>just_cm</strong> (<em>Bool</em>) – Only look at clients receiving case management. Defaults to True</p></li>
+<li><p><strong>timeframe</strong> (<em>Bool</em>) – Only include records with a linked_date in the timeframe. Defaults to True</p></li>
+<li><p><strong>distinct_clients</strong> (<em>Bool</em>) – Whether only one record should be counted per client. Defaults to False</p></li>
+<li><p><strong>group_by</strong> (<em>str</em>) – The column to group records by (linkage_type, internal_external, linkage_org). Defaults to ‘linkage_type’</p></li>
+<li><p><strong>link_started</strong> (<em>Bool</em>) – Only include linkages with a start date. Defaults to False</p></li>
+<li><p><strong>link_ongoing</strong> (<em>Bool</em>) – Only include linkages with no end date. Defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the types of linkages recorded for all clients in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_tally</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number of case management clients with an internal/external linkage at any time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_tally</span><span class="p">(</span><span class="n">just_cm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeframe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">distinct_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;internal_external&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients with a started linkage of each type in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_tally</span><span class="p">(</span><span class="n">distinct_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">link_started</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of clients linked to organizations at any time, with the linkage currently ongoing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">linkages_tally</span><span class="p">(</span><span class="n">distinct_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;linkage_org&#39;</span><span class="p">,</span> <span class="n">link_started</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">link_ongoing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Linkage Information (Flexible)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.outreach_elig_tally">
+<span class="sig-name descname"><span class="pre">outreach_elig_tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outreach_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_clients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.outreach_elig_tally" title="Link to this definition">#</a></dt>
+<dd><p>Counts the number of clients with outreach eligibility forms, and the number who answered yes to each question</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outreach_only</strong> (<em>Bool</em>) – Only include clients currently in outreach. Defaults to True</p></li>
+<li><p><strong>new_clients</strong> (<em>Bool</em>) – Only include new clients. Defaults to False</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number of new outreach clients with eligibility screenings/number of “yes”es for each question:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">outreach_elig_tally</span><span class="p">(</span><span class="n">new_clients</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get the number of all clients with eligibility screenings//number of “yes”es for each question:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">outreach_elig_tally</span><span class="p">(</span><span class="n">outreach_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Outreach Eligibility Form Responses</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.mediation_tally">
+<span class="sig-name descname"><span class="pre">mediation_tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.mediation_tally" title="Link to this definition">#</a></dt>
+<dd><p>Counts mediations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeframe</strong> (<em>Bool</em>) – Whether to only include mediations in the timeframe. Defaults to True</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mediation Count</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.session_tally">
+<span class="sig-name descname"><span class="pre">session_tally</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Case</span> <span class="pre">Management'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distinct_participants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.session_tally" title="Link to this definition">#</a></dt>
+<dd><p>Tallies the number of sessions, or number of clients in the timeframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>session_type</strong> – the type of session to count. Defaults to ‘Case Management’, but could also be ‘Outreach’</p></li>
+<li><p><strong>distinct_participants</strong> (<em>Bool</em>) – True counts the number of clients, False counts the number of sessions. Defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number of clients with a case management session in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">session_tally</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number of outreach sessions in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">session_tally</span><span class="p">(</span><span class="n">session_type</span><span class="o">=</span><span class="s1">&#39;Outreach&#39;</span><span class="p">,</span> <span class="n">distinct_participants</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CM or Outreach Session Tally</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Queries.session_frequency">
+<span class="sig-name descname"><span class="pre">session_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Case</span> <span class="pre">Management'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Queries.session_frequency" title="Link to this definition">#</a></dt>
+<dd><p>Calculates the regularity of client sessions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>session_type</strong> – the type of session to count. Defaults to ‘Case Management’, but could also be ‘Outreach’</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the session regularity of case management clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">session_frequency</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the session regularity of outreach clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">session_frequency</span><span class="p">(</span><span class="n">session_type</span><span class="o">=</span><span class="s2">&quot;Outreach&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CM or Outreach Session Frequency</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="module-sql_funcs">
+<span id="specific-use-functions"></span><h2>Specific-Use Functions<a class="headerlink" href="#module-sql_funcs" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sql_funcs.Audits">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_funcs.</span></span><span class="sig-name descname"><span class="pre">Audits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sql_funcs.Tables" title="sql_funcs.Tables"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tables</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.__init__" title="Link to this definition">#</a></dt>
+<dd><p>establishes settings and runs stints for the desired time period</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t1</strong> – start date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>t2</strong> – end date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>print_sql</strong> (<em>Bool</em>) – whether to print the SQL statements when run, defaults to True</p></li>
+<li><p><strong>clipboard</strong> (<em>Bool</em>) – whether to copy the output table to your clipboard, defaults to False</p></li>
+<li><p><strong>default_table</strong> – the source table to run queries on. defaults to “stints.neon”, can also use “stints.neon_chd”, or a participants table</p></li>
+<li><p><strong>mycase</strong> (<em>Bool</em>) – whether the user has a formatted MyCase SQL database, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Set up a table of all clients in Neon in 2024</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set up a table of CHD clients in Q3 of 2024:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span><span class="o">=</span> <span class="s1">&#39;2024-07-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span> <span class="s1">&#39;2024-09-30&#39;</span><span class="p">,</span> <span class="n">default_table</span> <span class="o">=</span> <span class="n">stints</span><span class="o">.</span><span class="n">neon_chd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.program_lacks_services">
+<span class="sig-name descname"><span class="pre">program_lacks_services</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.program_lacks_services" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of active programs with no corresponding services.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.service_lacks_grant">
+<span class="sig-name descname"><span class="pre">service_lacks_grant</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.service_lacks_grant" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of active services without a corresponding grant.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.service_lacks_staff">
+<span class="sig-name descname"><span class="pre">service_lacks_staff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">active_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.service_lacks_staff" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of active services without a corresponding staff member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>active_only</strong> (<em>Bool</em>) – only looks at clients with active programs/services</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.staff_lacks_service">
+<span class="sig-name descname"><span class="pre">staff_lacks_service</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.staff_lacks_service" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of staff members assigned to clients without a corresponding service type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Audits.legal_audit_lawyers">
+<span class="sig-name descname"><span class="pre">legal_audit_lawyers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Audits.legal_audit_lawyers" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_funcs.</span></span><span class="sig-name descname"><span class="pre">ReferralAsks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sql_funcs.Queries" title="sql_funcs.Queries"><code class="xref py py-class docutils literal notranslate"><span class="pre">Queries</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.__init__" title="Link to this definition">#</a></dt>
+<dd><p>establishes settings and runs stints for the desired time period</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t1</strong> – start date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>t2</strong> – end date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>print_sql</strong> (<em>Bool</em>) – whether to print the SQL statements when run, defaults to True</p></li>
+<li><p><strong>clipboard</strong> (<em>Bool</em>) – whether to copy the output table to your clipboard, defaults to False</p></li>
+<li><p><strong>default_table</strong> – the source table to run queries on. defaults to “stints.neon”, can also use “stints.neon_chd”, or a participants table</p></li>
+<li><p><strong>mycase</strong> (<em>Bool</em>) – whether the user has a formatted MyCase SQL database, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Set up a table of all clients in Neon in 2024</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set up a table of CHD clients in Q3 of 2024:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span><span class="o">=</span> <span class="s1">&#39;2024-07-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span> <span class="s1">&#39;2024-09-30&#39;</span><span class="p">,</span> <span class="n">default_table</span> <span class="o">=</span> <span class="n">stints</span><span class="o">.</span><span class="n">neon_chd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.highest_cases">
+<span class="sig-name descname"><span class="pre">highest_cases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attorneys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.highest_cases" title="Link to this definition">#</a></dt>
+<dd><p>Finds the number of cases for each felony class by team</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attorneys</strong> (<em>Bool</em>) – whether to group by attorney or team. Defaults to False</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the number cases for each team broken out by highest charge per client:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">highest_cases</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the number cases for each attorney broken out by highest charge per client:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">highest_cases</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.cm_closures">
+<span class="sig-name descname"><span class="pre">cm_closures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.cm_closures" title="Link to this definition">#</a></dt>
+<dd><p>Returns the number of closed clients in the timeframe for each case manager</p>
+<p class="rubric">Example</p>
+<p>Get the number of case management closures in the timeframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">cm_closures</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.cpic_summary">
+<span class="sig-name descname"><span class="pre">cpic_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.cpic_summary" title="Link to this definition">#</a></dt>
+<dd><p>Returns a summary of CPIC notifications in the timeframe</p>
+<p class="rubric">Example</p>
+<p>Get a CPIC notification summary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">cm_closures</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.missing_isp">
+<span class="sig-name descname"><span class="pre">missing_isp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.missing_isp" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of clients missing an ISP</p>
+<p class="rubric">Example</p>
+<p>Get a table of ISP-less clients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">missing_isp</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.ReferralAsks.last_30_days">
+<span class="sig-name descname"><span class="pre">last_30_days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">successful_sessions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.ReferralAsks.last_30_days" title="Link to this definition">#</a></dt>
+<dd><p>Returns a table of clients without a session in the last 30 days</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>successful_sessions</strong> (<em>Bool</em>) – Only include sessions where contact was successfully made. Defaults to True</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get a record of clients without a CM session in the last 30 days:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">last_30_days</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get a record of clients without a CM session attempt in the last 30 days:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">.</span><span class="n">last_30_days</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sql_funcs.Tables">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sql_funcs.</span></span><span class="sig-name descname"><span class="pre">Tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_SQL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipboard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stints.neon'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mycase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.__init__" title="Link to this definition">#</a></dt>
+<dd><p>establishes settings and runs stints for the desired time period</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t1</strong> – start date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>t2</strong> – end date, formatted as “YYYY-MM-DD”</p></li>
+<li><p><strong>print_sql</strong> (<em>Bool</em>) – whether to print the SQL statements when run, defaults to True</p></li>
+<li><p><strong>clipboard</strong> (<em>Bool</em>) – whether to copy the output table to your clipboard, defaults to False</p></li>
+<li><p><strong>default_table</strong> – the source table to run queries on. defaults to “stints.neon”, can also use “stints.neon_chd”, or a participants table</p></li>
+<li><p><strong>mycase</strong> (<em>Bool</em>) – whether the user has a formatted MyCase SQL database, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Set up a table of all clients in Neon in 2024</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set up a table of CHD clients in Q3 of 2024:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Queries</span><span class="p">(</span><span class="n">t1</span><span class="o">=</span> <span class="s1">&#39;2024-07-01&#39;</span><span class="p">,</span> <span class="n">t2</span><span class="o">=</span> <span class="s1">&#39;2024-09-30&#39;</span><span class="p">,</span> <span class="n">default_table</span> <span class="o">=</span> <span class="n">stints</span><span class="o">.</span><span class="n">neon_chd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.query_run">
+<span class="sig-name descname"><span class="pre">query_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.query_run" title="Link to this definition">#</a></dt>
+<dd><p>runs an SQL query (without a semicolon)
+format for a custom query: query_run(f”””query”””)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> – SQL query</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.query_modify">
+<span class="sig-name descname"><span class="pre">query_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modification</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.query_modify" title="Link to this definition">#</a></dt>
+<dd><p>edit a base SQL query, not particularly useful on its own</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>original_query</strong> – base SQL query</p></li>
+<li><p><strong>modification</strong> – string to modify it</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.stints_run">
+<span class="sig-name descname"><span class="pre">stints_run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.stints_run" title="Link to this definition">#</a></dt>
+<dd><p>runs the stints code</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.run_report">
+<span class="sig-name descname"><span class="pre">run_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_dict</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.run_report" title="Link to this definition">#</a></dt>
+<dd><p>runs a desired report
+:param func_dict: dictionary of functions to include, defaults to self.report_funcs. To use a different</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sql_funcs.Tables.table_update">
+<span class="sig-name descname"><span class="pre">table_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_default_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sql_funcs.Tables.table_update" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">neon_queries documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="examples_table.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">sql_funcs reference table</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-functions">General Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries"><code class="docutils literal notranslate"><span class="pre">Queries</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_assm"><code class="docutils literal notranslate"><span class="pre">assess_assm()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_assm_improvement"><code class="docutils literal notranslate"><span class="pre">assess_assm_improvement()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_missing_outreach"><code class="docutils literal notranslate"><span class="pre">assess_missing_outreach()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_score_change"><code class="docutils literal notranslate"><span class="pre">assess_score_change()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.assess_risk_factor_assessments"><code class="docutils literal notranslate"><span class="pre">assess_risk_factor_assessments()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.custody_status"><code class="docutils literal notranslate"><span class="pre">custody_status()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_address"><code class="docutils literal notranslate"><span class="pre">dem_address()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_age"><code class="docutils literal notranslate"><span class="pre">dem_age()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.dem_race_gender"><code class="docutils literal notranslate"><span class="pre">dem_race_gender()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment"><code class="docutils literal notranslate"><span class="pre">enrollment()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment_bundles"><code class="docutils literal notranslate"><span class="pre">enrollment_bundles()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.enrollment_flow"><code class="docutils literal notranslate"><span class="pre">enrollment_flow()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.incident_tally"><code class="docutils literal notranslate"><span class="pre">incident_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.incident_response"><code class="docutils literal notranslate"><span class="pre">incident_response()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_goal_tracker"><code class="docutils literal notranslate"><span class="pre">isp_goal_tracker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_tracker"><code class="docutils literal notranslate"><span class="pre">isp_tracker()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.isp_discharged"><code class="docutils literal notranslate"><span class="pre">isp_discharged()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_bonanza"><code class="docutils literal notranslate"><span class="pre">legal_bonanza()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_rearrested"><code class="docutils literal notranslate"><span class="pre">legal_rearrested()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.legal_rjcc"><code class="docutils literal notranslate"><span class="pre">legal_rjcc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_completed"><code class="docutils literal notranslate"><span class="pre">linkages_edu_completed()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_employ"><code class="docutils literal notranslate"><span class="pre">linkages_edu_employ()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_edu_employ_new"><code class="docutils literal notranslate"><span class="pre">linkages_edu_employ_new()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_monthly"><code class="docutils literal notranslate"><span class="pre">linkages_monthly()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_percent"><code class="docutils literal notranslate"><span class="pre">linkages_percent()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.linkages_tally"><code class="docutils literal notranslate"><span class="pre">linkages_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.outreach_elig_tally"><code class="docutils literal notranslate"><span class="pre">outreach_elig_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.mediation_tally"><code class="docutils literal notranslate"><span class="pre">mediation_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.session_tally"><code class="docutils literal notranslate"><span class="pre">session_tally()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Queries.session_frequency"><code class="docutils literal notranslate"><span class="pre">session_frequency()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-sql_funcs">Specific-Use Functions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits"><code class="docutils literal notranslate"><span class="pre">Audits</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.program_lacks_services"><code class="docutils literal notranslate"><span class="pre">program_lacks_services()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.service_lacks_grant"><code class="docutils literal notranslate"><span class="pre">service_lacks_grant()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.service_lacks_staff"><code class="docutils literal notranslate"><span class="pre">service_lacks_staff()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.staff_lacks_service"><code class="docutils literal notranslate"><span class="pre">staff_lacks_service()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Audits.legal_audit_lawyers"><code class="docutils literal notranslate"><span class="pre">legal_audit_lawyers()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks"><code class="docutils literal notranslate"><span class="pre">ReferralAsks</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.highest_cases"><code class="docutils literal notranslate"><span class="pre">highest_cases()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.cm_closures"><code class="docutils literal notranslate"><span class="pre">cm_closures()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.cpic_summary"><code class="docutils literal notranslate"><span class="pre">cpic_summary()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.missing_isp"><code class="docutils literal notranslate"><span class="pre">missing_isp()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.ReferralAsks.last_30_days"><code class="docutils literal notranslate"><span class="pre">last_30_days()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables"><code class="docutils literal notranslate"><span class="pre">Tables</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.__init__"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.query_run"><code class="docutils literal notranslate"><span class="pre">query_run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.query_modify"><code class="docutils literal notranslate"><span class="pre">query_modify()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.stints_run"><code class="docutils literal notranslate"><span class="pre">stints_run()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.run_report"><code class="docutils literal notranslate"><span class="pre">run_report()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql_funcs.Tables.table_update"><code class="docutils literal notranslate"><span class="pre">table_update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By eli
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, eli.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

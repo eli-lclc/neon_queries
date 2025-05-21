@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; suave_sql 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="suave_sql.html">sql_funcs documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_table.html">sql_funcs reference table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting_funcs.html">reporting_funcs documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_examples.html">report examples</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.__init__">__init__() (reporting_funcs.Report method)</a>
+
+      <ul>
+        <li><a href="suave_sql.html#sql_funcs.Audits.__init__">(sql_funcs.Audits method)</a>
+</li>
+        <li><a href="suave_sql.html#sql_funcs.Queries.__init__">(sql_funcs.Queries method)</a>
+</li>
+        <li><a href="suave_sql.html#sql_funcs.ReferralAsks.__init__">(sql_funcs.ReferralAsks method)</a>
+</li>
+        <li><a href="suave_sql.html#sql_funcs.Tables.__init__">(sql_funcs.Tables method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.assess_assm">assess_assm() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.assess_assm_improvement">assess_assm_improvement() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.assess_missing_outreach">assess_missing_outreach() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.assess_risk_factor_assessments">assess_risk_factor_assessments() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.assess_score_change">assess_score_change() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Audits">Audits (class in sql_funcs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks.cm_closures">cm_closures() (sql_funcs.ReferralAsks method)</a>
+</li>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.consolidate_query_outputs">consolidate_query_outputs() (reporting_funcs.Report method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks.cpic_summary">cpic_summary() (sql_funcs.ReferralAsks method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.custody_status">custody_status() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.dem_address">dem_address() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.dem_age">dem_age() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.dem_race_gender">dem_race_gender() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.enrollment">enrollment() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.enrollment_bundles">enrollment_bundles() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.enrollment_flow">enrollment_flow() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.generate_reports">generate_reports() (reporting_funcs.Report method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks.highest_cases">highest_cases() (sql_funcs.ReferralAsks method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.incident_response">incident_response() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.incident_tally">incident_tally() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.isp_discharged">isp_discharged() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.isp_goal_tracker">isp_goal_tracker() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.isp_tracker">isp_tracker() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks.last_30_days">last_30_days() (sql_funcs.ReferralAsks method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Audits.legal_audit_lawyers">legal_audit_lawyers() (sql_funcs.Audits method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.legal_bonanza">legal_bonanza() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.legal_rearrested">legal_rearrested() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.legal_rjcc">legal_rjcc() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_edu_completed">linkages_edu_completed() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_edu_employ">linkages_edu_employ() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_edu_employ_new">linkages_edu_employ_new() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_monthly">linkages_monthly() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_percent">linkages_percent() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.linkages_tally">linkages_tally() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.make_date_dict">make_date_dict() (reporting_funcs.Report method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.mediation_tally">mediation_tally() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks.missing_isp">missing_isp() (sql_funcs.ReferralAsks method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="reporting_funcs.html#module-reporting_funcs">reporting_funcs</a>
+</li>
+        <li><a href="suave_sql.html#module-sql_funcs">sql_funcs</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries.outreach_elig_tally">outreach_elig_tally() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Audits.program_lacks_services">program_lacks_services() (sql_funcs.Audits method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Queries">Queries (class in sql_funcs)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Tables.query_modify">query_modify() (sql_funcs.Tables method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Tables.query_run">query_run() (sql_funcs.Tables method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.ReferralAsks">ReferralAsks (class in sql_funcs)</a>
+</li>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report">Report (class in reporting_funcs)</a>
+</li>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.report_to_excel">report_to_excel() (reporting_funcs.Report method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    reporting_funcs
+
+      <ul>
+        <li><a href="reporting_funcs.html#module-reporting_funcs">module</a>
+</li>
+      </ul></li>
+      <li><a href="reporting_funcs.html#reporting_funcs.Report.run_a_report">run_a_report() (reporting_funcs.Report method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Tables.run_report">run_report() (sql_funcs.Tables method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Audits.service_lacks_grant">service_lacks_grant() (sql_funcs.Audits method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Audits.service_lacks_staff">service_lacks_staff() (sql_funcs.Audits method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.session_frequency">session_frequency() (sql_funcs.Queries method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Queries.session_tally">session_tally() (sql_funcs.Queries method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    sql_funcs
+
+      <ul>
+        <li><a href="suave_sql.html#module-sql_funcs">module</a>
+</li>
+      </ul></li>
+      <li><a href="suave_sql.html#sql_funcs.Audits.staff_lacks_service">staff_lacks_service() (sql_funcs.Audits method)</a>
+</li>
+      <li><a href="suave_sql.html#sql_funcs.Tables.stints_run">stints_run() (sql_funcs.Tables method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Tables.table_update">table_update() (sql_funcs.Tables method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="suave_sql.html#sql_funcs.Tables">Tables (class in sql_funcs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By eli
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, eli.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
